@@ -1,4 +1,5 @@
-capture-the-flag
+Capture the Flag
 ================
 
-Multiplayer capture the flag
+Multiplayer capture the flag!
+Built on Node.js and Crafty.js.
