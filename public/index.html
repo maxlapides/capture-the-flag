@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Max and Brian's New Game</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+	<body>
+
+		<script src="libs/crafty.js"></script>
+		<script src="libs/underscore-min.js"></script>
+		<script src="libs/jquery-2.0.3.min.js"></script>
+		<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+		<script src="js/game.min.js"></script>
+
+		<div id="start" class="custom-scene">
+			<h1>Enter Username</h1>
+
+			<form>
+				<input type="text" id="username" name="username" autofocus="true" />
+				<input type="submit" value="Submit" />
+			</form>
+
+		</div>
+
+		<div id="waiting-room" class="custom-scene">
+
+			<div id="team-select">
+				<h1>Select Your Team:</h2>
+				<input type="submit" value="Black" id="black" />
+				<input type="submit" value="White" id="white" />
+			</div>
+
+			<div class="team">
+				<h2>Black Team</h2>
+				<ul id="team-black"></ul>
+			</div>
+
+			<div class="team">
+				<h2>White Team</h2>
+				<ul id="team-white"></ul>
+			</div>
+
+			<div id="waiting-msg">Waiting for more players...</div>
+
+		</div>
+
+		<div id="game-in-progress" class="custom-scene">
+			<h1>Game In Progress!</h1>
+			<h2>Check back soon</h2>
+		</div>
+
+		<div id="below-game" class="custom-scene">
+
+			<div id="teammates">
+				<div id="free-teammates">
+					<h2>Free Teammates</h2>
+					<ul></ul>
+				</div>
+				<div id="captured-teammates">
+					<h2>Captured Teammates</h2>
+					<ul></ul>
+				</div>
+			</div>
+
+			<div id="chat">
+				<div id="chat-msgs"></div>
+				<form id="chatForm"><input type="text" placeholder="Chat with your team..." id="chatMsg" /></form>
+			</div>
+
+		</div>
+
+	</body>
+</html>

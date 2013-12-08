@@ -1,0 +1,114 @@
+@import "bourbon";
+@import "normalize";
+
+* {
+	@include box-sizing(border-box);
+}
+
+body {
+	padding: 20px;
+	font-family: $monospace;
+	font-size: 11px;
+}
+
+div {
+	margin: 0 auto;
+}
+
+.custom-scene {
+	width: 480px;
+	height: 320px;
+	position: absolute;
+	left: 50%;
+	margin-left: -240px;
+	background: white;
+	z-index: 2;
+	display: none;
+	border: solid 1px black;
+}
+
+input {
+	display: block;
+	width: 200px;
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+}
+
+.team {
+	float: left;
+	width: 50%;
+	padding: 0 20px;
+
+	h2 {
+		text-align: center;
+	}
+
+}
+
+#team-1 {
+	border-right: solid 1px black;
+}
+
+#team-select {
+	text-align: center;
+
+	input {
+		float: left;
+		margin: 0 10px;
+	}
+
+}
+
+#waiting-room {
+
+	#waiting-msg {
+		font-size: 12px;
+		position: absolute;
+		bottom: 5px;
+		right: 5px;
+	}
+
+}
+
+#below-game {
+	top: 350px;
+	height: auto;
+}
+
+#teammates {
+	@include clearfix;
+	height: auto;
+	top: 350px;
+	border-bottom: solid 1px black;
+
+	div {
+		width: 50%;
+		float: left;
+		padding: 10px;
+
+		h2 {
+			text-align: center;
+		}
+
+	}
+
+}
+
+#chat {
+	height: 100px;
+
+	#chat-msgs {
+		overflow: auto;
+		height: 75px;
+		padding: 5px;
+	}
+
+	input {
+		width: 470px;
+		margin: 0 auto;
+	}
+
+}
