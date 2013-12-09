@@ -20,6 +20,7 @@ Game = {
 
 		var viewportWidth, viewportHeight;
 
+		// set the visible area on the screen
 		if(mapDesignMode) {
 			viewportWidth = Game.map_grid.tile.width * Game.map_grid.width;
 			viewportHeight = Game.map_grid.tile.height * Game.map_grid.height;
@@ -31,8 +32,10 @@ Game = {
 		Crafty.init(viewportWidth, viewportHeight);
 		Crafty.viewport.init(viewportWidth, viewportHeight);
 
+		// add a background color to the whole project
 		Crafty.background(CapColors.gray30);
 
+		// set the starting scene
 		if(mapDesignMode) {
 			Crafty.scene('Game');
 		} else {

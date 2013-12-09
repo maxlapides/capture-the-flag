@@ -23,7 +23,19 @@ Crafty.c('Grid', {
 			});
 			return this;
 		}
+	},
+
+	setSize: function(width, height) {
+
+		this.attr({
+			w: Game.map_grid.tile.width * width,
+			h: Game.map_grid.tile.height * height
+		});
+
+		return this;
+
 	}
+
 });
 
 Crafty.c('StageBg', {
@@ -47,7 +59,10 @@ Crafty.c('Edge', {
 
 	init: function() {
 		this.requires('Actor, Solid, Color, Grid, Solid')
-			.color('black');
+			.color('black')
+			.attr({
+				z: 3
+			});
 	}
 
 });
@@ -57,26 +72,30 @@ Crafty.c('Obstacle', {
 	init: function() {
 		this.requires('Edge')
 			.setSize(1, 1);
-	},
+	}
 
-	setSize: function(width, height) {
+});
 
-		this.attr({
-			w: Game.map_grid.tile.width * width,
-			h: Game.map_grid.tile.height * height
-		});
+Crafty.c('SafeZone', {
 
-		return this;
-
-	},
+	init: function() {
+		this.requires('Actor, Color, Grid')
+			.color(CapColors.gray50)
+			.attr({
+				z: 1
+			});
+	}
 
 });
 
 Crafty.c('Player', {
 
 	init: function() {
-		this.requires('Actor, Color, Grid')
-			.color('rgb(20,75,40)');
+		this.requires('Actor, Color, Grid, Solid')
+			.color('rgb(20,75,40)')
+			.attr({
+				z: 2
+			});
 	},
 
 	setTeam: function(team) {
@@ -114,11 +133,8 @@ Crafty.c('PlayerCharacter', {
 	},
 
 	pcCollisions: function() {
-
 		this.onHit('Solid', this.stopMovement);
-
 		return this;
-
 	},
 
 	stopMovement: function() {
