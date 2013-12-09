@@ -53,13 +53,23 @@ Crafty.c('Edge', {
 });
 
 Crafty.c('Obstacle', {
+
 	init: function() {
 		this.requires('Edge')
-			.attr({
-				w: Game.map_grid.tile.width * 3,
-				h: Game.map_grid.tile.height
-			});
-	}
+			.setSize(1, 1);
+	},
+
+	setSize: function(width, height) {
+
+		this.attr({
+			w: Game.map_grid.tile.width * width,
+			h: Game.map_grid.tile.height * height
+		});
+
+		return this;
+
+	},
+
 });
 
 Crafty.c('Player', {

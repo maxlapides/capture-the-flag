@@ -1,4 +1,4 @@
-/* global Game:true, Crafty, io, socket:true, Player, player:true, remotePlayers:true, addChatMsg, _, addToWaitingRoom, CapColors */
+/* global Game:true, Crafty, io, socket:true, Player, player:true, remotePlayers:true, addChatMsg, _, addToWaitingRoom, CapColors, mapDesignMode, Maps */
 
 Crafty.scene('Start', function() {
 
@@ -67,7 +67,7 @@ Crafty.scene('Game', function() {
 
 	// show the game and the stuff below it (teammates, chat)
 	$('.custom-scene').hide();
-	$('#below-game').show();
+	if(!mapDesignMode) { $('#below-game').show(); }
 
 	// add the "stage" to the canvas
 	Crafty.map.insert(Crafty.e('StageBg').at(0,0));
@@ -89,6 +89,9 @@ Crafty.scene('Game', function() {
 			freeTeammates.append('<li id="player-' + thisPlayer.id + '">' + thisPlayer.username + '</li>');
 		}
 	});
+
+	// set map
+	Maps.map1();
 
 	// initialize player positions
 	var initPlayer;
