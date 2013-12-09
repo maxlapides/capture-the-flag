@@ -1,19 +1,33 @@
-/* global Game:true, Crafty, io, socket:true, Player, player:true, remotePlayers:true, addChatMsg, _, addToWaitingRoom */
+/* global Game:true, Crafty, io, socket:true, Player, player:true, remotePlayers:true, addChatMsg, _, addToWaitingRoom, CapColors */
 
 Crafty.scene('Start', function() {
 
+	// show start scene
 	$('.custom-scene').hide();
 	$('#start').show();
 
-	$('#start input[type=submit]').click(function(e) {
+	// when the username form is submitted
+	$('#username-form').submit(function(e) {
 
+		// prevents the form from doing its default thing
+		// (which might be reloading the page)
 		e.preventDefault();
 
+		// grab the username and sanitize it a little
+		// (because you know some cs dork is gonna try
+		// to mess up our game by entering some weird shit)
 		var username = encodeURI($('input#username').val().trim());
+
+		// if the username is empty, stop here
+		if(!username) { return; }
+
+		// send the username to the server
 		socket.emit("new player", {name: username});
 
+		// save the username locally
 		player.username = username;
 
+		// switch to the Waiting Room scene
 		Crafty.scene('WaitingRoom');
 
 	});
@@ -22,6 +36,7 @@ Crafty.scene('Start', function() {
 
 Crafty.scene('WaitingRoom', function() {
 
+	// show waiting room
 	$('.custom-scene').hide();
 	$('#waiting-room').show();
 
@@ -43,17 +58,21 @@ Crafty.scene('WaitingRoom', function() {
 });
 
 Crafty.scene('GameInProgress', function() {
+	// show game in progress scene
 	$('.custom-scene').hide();
 	$('#game-in-progress').show();
 });
 
 Crafty.scene('Game', function() {
 
+	// show the game and the stuff below it (teammates, chat)
 	$('.custom-scene').hide();
 	$('#below-game').show();
 
-	Crafty.map.insert(Crafty.e('Stage').at(0,0));
+	// add the "stage" to the canvas
+	Crafty.map.insert(Crafty.e('StageBg').at(0,0));
 
+	// add edges to the map
 	for (var x = 0; x < Game.map_grid.width; x++) {
 		for (var y = 0; y < Game.map_grid.height; y++) {
 			var at_edge = x === 0 || x === Game.map_grid.width - 1 || y === 0 || y === Game.map_grid.height - 1;
@@ -75,15 +94,21 @@ Crafty.scene('Game', function() {
 	var initPlayer;
 	socket.on("init player", function(data) {
 
-		// player character
+		// player character (that's you!)
 		if(data.id === player.id) {
-			player.entity = Crafty.e('PlayerCharacter').at(data.x, data.y);
+			player.entity = Crafty.e('PlayerCharacter')
+									.at(data.x, data.y)
+									.setTeam(player.team);
+			initPlayer = player;
 			Crafty.viewport.follow(player.entity, 20, 20);
 		}
 
+		// the other players
 		else {
 			initPlayer = remotePlayers[data.id];
-			initPlayer.entity = Crafty.e('Player').at(data.x, data.y);
+			initPlayer.entity = Crafty.e('Player')
+										.at(data.x, data.y)
+										.setTeam(initPlayer.team);
 		}
 
 	});

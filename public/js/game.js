@@ -1,13 +1,13 @@
 /* global Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true */
 
-//@codekit-prepend 'Player.js', 'eventHandlers.js'
+//@codekit-prepend 'colors.js', 'Player.js', 'eventHandlers.js'
 //@codekit-append 'components.js', 'scenes.js'
 
 Game = {
 
 	map_grid : {
-		width:  32,
-		height: 32,
+		width:  80,
+		height: 25,
 		tile: {
 			width:  16,
 			height: 16
@@ -18,7 +18,7 @@ Game = {
 
 		Crafty.init(480, 320);
 		Crafty.viewport.init(480, 320);
-		Crafty.background('black');
+		Crafty.background(CapColors.gray30);
 		Crafty.scene('Start');
 
 		// Initialise socket connection

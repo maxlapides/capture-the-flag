@@ -6,14 +6,15 @@
 
 var util = require("util"),					// Utility resources (logging, object inspection, etc)
 	io = require("socket.io"),				// Socket.IO
-	_ = require('underscore')._,
+	_ = require('underscore')._,			// Underscore.js
 	Player = require("./Player").Player;	// Player class
 
 /**************************************************
 	GAME VARIABLES
 **************************************************/
 
-var players,					// Array of connected players
+var inactivePlayers,			// Array of connected players
+	players,					// Array of active players
 	playersCount,				// Number of connected players
 	countdown,					// Interval ID of countdown timer
 	gameInProgress = false;
@@ -26,10 +27,15 @@ function startGame() {
 
 	gameInProgress = true;
 
+	// notify each of the inactive players that the game is in progress
+	_.each(_.keys(inactivePlayers), function(inactivePlayer) {
+		io.sockets.socket(inactivePlayer).emit("game in progress");
+	});
+
 	// set player positions
 	_.each(_.values(players), function(thisPlayer) {
-		thisPlayer.x = Math.floor(Math.random()*11);
-		thisPlayer.y = Math.floor(Math.random()*11);
+		thisPlayer.x = Math.floor(Math.random()*11 + 1);
+		thisPlayer.y = Math.floor(Math.random()*11 + 1);
 		io.sockets.emit("init player", {id:thisPlayer.id, x: thisPlayer.x, y: thisPlayer.y});
 	});
 
@@ -82,7 +88,7 @@ function updateWaitingMessage() {
 
 		util.log("Countdown initiated.");
 
-		var countdownCounter = 3;
+		var countdownCounter = 1;
 
 		countdown = setInterval(function() {
 
@@ -144,6 +150,12 @@ function onClientDisconnect() {
 // New player has joined
 function onNewPlayer(data) {
 
+	// if there is already a game in progress, notify the client
+	if(gameInProgress) {
+		this.emit("game in progress");
+		return;
+	}
+
 	// Create a new player
 	var newPlayer = new Player(this.id, data.name);
 	util.log("New player added: " + newPlayer.username);
@@ -151,30 +163,16 @@ function onNewPlayer(data) {
 	// Broadcast new player to connected socket clients
 	this.broadcast.emit("new player", {id: newPlayer.id, name: newPlayer.username, team: newPlayer.team});
 
-	// Add new player to the players array
-	players[newPlayer.id] = newPlayer;
+	// Remove this player from the inactive array
+	delete inactivePlayers[newPlayer.id];
+
+	// Add this player to the active array
+	players[this.id] = newPlayer;
 	playersCount++;
 
 	// Update the waiting room message
 	updateWaitingMessage();
 
-}
-
-// Player has moved
-function onMovePlayer(data) {
-	// Find player in array
-	var movePlayer = players[this.id];
-
-	// Player not found
-	if (!movePlayer) {
-		util.log("Player not found: "+this.id);
-		return;
-	}
-
-	// Update player position
-
-	// Broadcast updated position to connected socket clients
-	this.broadcast.emit("move player", {id: movePlayer.id});
 }
 
 function onTeamAssignment(data) {
@@ -222,16 +220,20 @@ function onSocketConnection(client) {
 	});
 
 	// if there is already a game in progress, notify the client
-	if(gameInProgress) { this.emit("game in progress"); }
+	if(gameInProgress) {
+		client.emit("game in progress");
+	}
+
+	// otherwise, add this player to the inactive players array
+	else {
+		inactivePlayers[client.id] = true;
+	}
 
 	// Listen for client disconnected
 	client.on("disconnect", onClientDisconnect);
 
 	// Listen for new player message
 	client.on("new player", onNewPlayer);
-
-	// Listen for move player message
-	client.on("move player", onMovePlayer);
 
 	// Listen for team assignment requests
 	client.on("team assignment", onTeamAssignment);
@@ -245,7 +247,6 @@ function onSocketConnection(client) {
 }
 
 function setEventHandlers() {
-	// Socket.IO
 	io.sockets.on("connection", onSocketConnection);
 }
 
@@ -253,10 +254,16 @@ function setEventHandlers() {
 /**************************************************
 	GAME INITIALIZATION
 **************************************************/
-function init() {
-	// Create an empty array to store players
+
+function reset() {
+	inactivePlayers = {};
 	players = {};
 	playersCount = 0;
+}
+
+function init() {
+
+	reset();
 
 	// Set up Socket.IO to listen on port 8000
 	io = io.listen(8000);

@@ -1,4 +1,4 @@
-/* global Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true */
+/* global _, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors */
 
 Crafty.c('Grid', {
 
@@ -26,12 +26,12 @@ Crafty.c('Grid', {
 	}
 });
 
-Crafty.c('Stage', {
+Crafty.c('StageBg', {
 	init: function() {
 		this.requires('2D, Canvas, Color, Grid')
-			.color('green')
+			.color(CapColors.gray20)
 			.attr({
-				w: Game.map_grid.tile.width * Game.map_grid.width,
+				w: (Game.map_grid.tile.width * Game.map_grid.width) / 2,
 				h: Game.map_grid.tile.height * Game.map_grid.height
 			});
 	}
@@ -44,10 +44,22 @@ Crafty.c('Actor', {
 });
 
 Crafty.c('Edge', {
+
 	init: function() {
 		this.requires('Actor, Solid, Color, Grid, Solid')
 			.color('black');
-	},
+	}
+
+});
+
+Crafty.c('Obstacle', {
+	init: function() {
+		this.requires('Edge')
+			.attr({
+				w: Game.map_grid.tile.width * 3,
+				h: Game.map_grid.tile.height
+			});
+	}
 });
 
 Crafty.c('Player', {
@@ -55,6 +67,17 @@ Crafty.c('Player', {
 	init: function() {
 		this.requires('Actor, Color, Grid')
 			.color('rgb(20,75,40)');
+	},
+
+	setTeam: function(team) {
+		if(team === "white") {
+			this.color(CapColors.white);
+		} else {
+			this.color(CapColors.black);
+		}
+
+		return this;
+
 	}
 
 });
@@ -66,7 +89,7 @@ Crafty.c('PlayerCharacter', {
 			.multiway(4, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW: 0, LEFT_ARROW: 180})
 			.color('rgb(20,75,40)')
 			.postMovement()
-			.stopOnSolids()
+			.pcCollisions()
 			.disableOnChat();
 	},
 
@@ -80,9 +103,12 @@ Crafty.c('PlayerCharacter', {
 
 	},
 
-	stopOnSolids: function() {
+	pcCollisions: function() {
+
 		this.onHit('Solid', this.stopMovement);
+
 		return this;
+
 	},
 
 	stopMovement: function() {
@@ -101,10 +127,14 @@ Crafty.c('PlayerCharacter', {
 
 		var pc = this;
 
+		// when the user clicks in the chat message box
+		// prevent arrow keys from moving the character
 		$('input#chatMsg').focus(function() {
 			pc.disableControl();
 		});
 
+		// when the user unclicks from the chat message box
+		// enable the user to move the character
 		$('input#chatMsg').blur(function() {
 			pc.enableControl();
 		});

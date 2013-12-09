@@ -103,8 +103,8 @@
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/vendor\/web-socket-js\/sample.html" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/vendor\/web-socket-js\/sample.html",
       "outputAbbreviatedPath" : "No Output Path",
@@ -143,17 +143,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/policyfile\/examples\/basic.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/strict-equals.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/strict-equals.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/strict-equals.min.js",
-      "fileType" : 64
-    },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/beautify.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -163,6 +152,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/beautify.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/strict-equals.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/strict-equals.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/strict-equals.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/components\/learnboost-engine.io-client\/lib\/index.js" : {
@@ -220,17 +220,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue25.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/array3.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/array3.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/array3.min.js",
-      "fileType" : 64
-    },
     "\/node_modules\/socket.io\/node_modules\/redis\/benches\/hiredis_parser.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -240,6 +229,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/benches\/hiredis_parser.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/array3.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/array3.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/array3.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/lib\/BufferPool.js" : {
@@ -266,8 +266,8 @@
     },
     "\/node_modules\/underscore\/underscore-min.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/underscore\/underscore-min.js",
       "outputStyle" : 1,
@@ -354,8 +354,8 @@
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/test-tokenizer.html" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/test-tokenizer.html",
       "outputAbbreviatedPath" : "No Output Path",
@@ -427,15 +427,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/array2.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/test\/hybi-common.js" : {
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/tests.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/test\/hybi-common.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/tests.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/test\/hybi-common.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/tests.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/lib\/transports\/http.js" : {
@@ -447,17 +447,6 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/transports\/http.min.js",
-      "fileType" : 64
-    },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/tests.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/tests.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/tests.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/goto2.js" : {
@@ -480,6 +469,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/test\/WebSocketServer.test.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/test\/hybi-common.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/test\/hybi-common.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/test\/hybi-common.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/ifreturn2.js" : {
@@ -605,8 +605,8 @@
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/README.html" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/README.html",
       "outputAbbreviatedPath" : "No Output Path",
@@ -734,17 +734,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/array1.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/node_modules\/options\/test\/options.test.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/node_modules\/options\/test\/options.test.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/node_modules\/options\/test\/options.test.min.js",
-      "fileType" : 64
-    },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/components\/learnboost-engine.io-client\/lib\/transports\/polling-jsonp.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -754,6 +743,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/components\/learnboost-engine.io-client\/lib\/transports\/polling-jsonp.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/node_modules\/options\/test\/options.test.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/node_modules\/options\/test\/options.test.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/node_modules\/options\/test\/options.test.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue21.js" : {
@@ -989,8 +989,8 @@
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/examples\/serverstats\/public\/index.html" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/examples\/serverstats\/public\/index.html",
       "outputAbbreviatedPath" : "No Output Path",
@@ -1073,26 +1073,26 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/index.min.js",
       "fileType" : 64
     },
-    "\/public\/js\/Player.js" : {
+    "\/public\/js\/colors.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/public\/js\/Player.js",
+      "inputAbbreviatedPath" : "\/public\/js\/colors.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/public\/js\/Player.min.js",
+      "outputAbbreviatedPath" : "\/public\/js\/colors.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/lib\/transports\/websocket.js" : {
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue11.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/transports\/websocket.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue11.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/transports\/websocket.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue11.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue4.js" : {
@@ -1106,26 +1106,26 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue4.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue54.1.js" : {
+    "\/node_modules\/socket.io\/lib\/transports\/websocket.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue54.1.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/transports\/websocket.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue54.1.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/transports\/websocket.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/redis\/examples\/simple.js" : {
+    "\/public\/js\/Player.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
-      "hidden" : 1,
+      "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/examples\/simple.js",
+      "inputAbbreviatedPath" : "\/public\/js\/Player.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/examples\/simple.min.js",
+      "outputAbbreviatedPath" : "\/public\/js\/Player.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/policyfile\/tests\/unit.test.js" : {
@@ -1148,6 +1148,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/events.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/redis\/examples\/simple.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/examples\/simple.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/examples\/simple.min.js",
       "fileType" : 64
     },
     "\/public\/css\/styles.scss" : {
@@ -1173,15 +1184,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/components\/learnboost-engine.io-client\/lib\/transports\/polling-xhr.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue11.js" : {
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue54.1.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue11.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue54.1.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue11.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue54.1.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/null_string.js" : {
@@ -1261,17 +1272,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/node_modules\/commander\/lib\/commander.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/redis\/examples\/subqueries.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/examples\/subqueries.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/examples\/subqueries.min.js",
-      "fileType" : 64
-    },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue21.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -1281,6 +1281,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue21.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/redis\/examples\/subqueries.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/examples\/subqueries.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/examples\/subqueries.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/components\/learnboost-engine.io-client\/lib\/util.js" : {
@@ -1723,8 +1734,8 @@
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/examples\/serverstats-express_3\/public\/index.html" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/examples\/serverstats-express_3\/public\/index.html",
       "outputAbbreviatedPath" : "No Output Path",
@@ -1752,17 +1763,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/const.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue10.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue10.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue10.min.js",
-      "fileType" : 64
-    },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/Tokenizer.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -1783,6 +1783,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/components\/visionmedia-debug\/index.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue10.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue10.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue10.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/lib\/static.js" : {
@@ -1818,15 +1829,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/node\/builder.test.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js" : {
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/embed-tokens.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/embed-tokens.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/embed-tokens.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/components\/component-json\/index.js" : {
@@ -1851,15 +1862,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/test\/Sender.test.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/embed-tokens.js" : {
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/embed-tokens.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/embed-tokens.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/lib\/Receiver.js" : {
@@ -2069,37 +2080,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue28.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/unicodecategories.js" : {
+    "\/node_modules\/socket.io\/lib\/transports\/websocket\/hybi-07-12.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/unicodecategories.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/transports\/websocket\/hybi-07-12.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/unicodecategories.min.js",
-      "fileType" : 64
-    },
-    "\/node_modules\/socket.io\/lib\/util.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/util.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/util.min.js",
-      "fileType" : 64
-    },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue34.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue34.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue34.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/transports\/websocket\/hybi-07-12.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/269.js" : {
@@ -2113,15 +2102,37 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/269.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/lib\/transports\/websocket\/hybi-07-12.js" : {
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/unicodecategories.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/transports\/websocket\/hybi-07-12.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/unicodecategories.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/transports\/websocket\/hybi-07-12.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/unicodecategories.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue34.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue34.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue34.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/lib\/util.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/util.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/lib\/util.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/lib\/parser.js" : {
@@ -2258,8 +2269,8 @@
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/examples\/fileapi\/public\/index.html" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/examples\/fileapi\/public\/index.html",
       "outputAbbreviatedPath" : "No Output Path",
@@ -2364,17 +2375,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue69.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/var.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/var.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/var.min.js",
-      "fileType" : 64
-    },
     "\/node_modules\/socket.io\/node_modules\/redis\/lib\/to_array.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -2384,6 +2384,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/lib\/to_array.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/var.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/var.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/var.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/redis\/generate_commands.js" : {
@@ -2454,8 +2465,8 @@
     },
     "\/node_modules\/socket.io\/node_modules\/policyfile\/doc\/index.html" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/policyfile\/doc\/index.html",
       "outputAbbreviatedPath" : "No Output Path",
@@ -2472,17 +2483,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/test.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/index.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/index.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/index.min.js",
-      "fileType" : 64
-    },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/array3.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -2492,6 +2492,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/array3.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/index.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/index.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/index.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/lib\/store.js" : {
@@ -2516,15 +2527,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/lib\/ErrorCodes.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/bench\/sender.benchmark.js" : {
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/dist\/socket.io.min.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/bench\/sender.benchmark.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/dist\/socket.io.min.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/bench\/sender.benchmark.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/dist\/socket.io.min.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue29.js" : {
@@ -2549,17 +2560,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/benches\/stress\/rpushblpop\/server.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/dist\/socket.io.min.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/dist\/socket.io.min.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/dist\/socket.io.min.min.js",
-      "fileType" : 64
-    },
     "\/node_modules\/socket.io\/node_modules\/redis\/benches\/re_sub_test.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -2569,6 +2569,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/benches\/re_sub_test.min.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/bench\/sender.benchmark.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/bench\/sender.benchmark.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/bench\/sender.benchmark.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/parser.test.js" : {
@@ -2628,12 +2639,23 @@
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/docstyle.css" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/docstyle.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
+    },
+    "\/node_modules\/socket.io\/node_modules\/redis\/benches\/stress\/speed\/size-rate.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/benches\/stress\/speed\/size-rate.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/benches\/stress\/speed\/size-rate.png",
+      "initialSize" : 6672,
+      "fileType" : 8192
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue48.js" : {
       "ignoreWasSetByUser" : 0,
@@ -2656,17 +2678,6 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/concatstring.min.js",
       "fileType" : 64
-    },
-    "\/node_modules\/socket.io\/node_modules\/redis\/benches\/stress\/speed\/size-rate.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/benches\/stress\/speed\/size-rate.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/redis\/benches\/stress\/speed\/size-rate.png",
-      "initialSize" : 6672,
-      "fileType" : 8192
     },
     "\/node_modules\/socket.io\/lib\/socket.js" : {
       "ignoreWasSetByUser" : 0,
@@ -3022,8 +3033,8 @@
     },
     "\/node_modules\/underscore\/underscore.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/underscore\/underscore.js",
       "outputStyle" : 1,
@@ -3077,8 +3088,8 @@
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/benchmark.html" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/benchmark.html",
       "outputAbbreviatedPath" : "No Output Path",
@@ -3117,15 +3128,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/policyfile\/examples\/basic.fallback.min.js",
       "fileType" : 64
     },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/socket.test.js" : {
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/namespace.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 1,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/socket.test.js",
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/namespace.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/socket.test.min.js",
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/namespace.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/examples\/fileapi\/public\/app.js" : {
@@ -3150,6 +3161,17 @@
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/examples\/ssl.min.js",
       "fileType" : 64
     },
+    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/socket.test.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/socket.test.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/socket.test.min.js",
+      "fileType" : 64
+    },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/transports\/websocket.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -3159,17 +3181,6 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/transports\/websocket.min.js",
-      "fileType" : 64
-    },
-    "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/namespace.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 1,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/namespace.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/namespace.min.js",
       "fileType" : 64
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue10.js" : {
@@ -3317,8 +3328,8 @@
     },
     "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/test-parser.html" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
+      "ignore" : 1,
+      "hidden" : 1,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/test-parser.html",
       "outputAbbreviatedPath" : "No Output Path",
