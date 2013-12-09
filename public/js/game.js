@@ -1,6 +1,6 @@
 /* global Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true */
 
-//@codekit-prepend 'Player.js', 'waiting-room-helpers.js', 'eventHandlers.js'
+//@codekit-prepend 'Player.js', 'eventHandlers.js'
 //@codekit-append 'components.js', 'scenes.js'
 
 Game = {

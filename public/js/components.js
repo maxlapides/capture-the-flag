@@ -62,8 +62,8 @@ Crafty.c('Player', {
 Crafty.c('PlayerCharacter', {
 
 	init: function() {
-		this.requires('Player, Fourway, Collision')
-			.fourway(4)
+		this.requires('Player, Multiway, Collision')
+			.multiway(4, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW: 0, LEFT_ARROW: 180})
 			.color('rgb(20,75,40)')
 			.postMovement()
 			.stopOnSolids()
