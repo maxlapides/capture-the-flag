@@ -138,9 +138,12 @@ Crafty.c('PlayerCharacter', {
 		}
 	},
 
-	/*flagPickUp: function() {
+	/*flagPickUp: function(collisionData) {
 
-
+		_.each(collisionData, function(curr) {
+			
+			
+		})
 
 	}*/
 

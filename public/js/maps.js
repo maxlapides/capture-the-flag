@@ -52,19 +52,19 @@ var Maps = {
 		Crafty.e('HidingZone').at(98, 28).setSize(2, 2);
 		Crafty.e('HidingZone').at(113, 28).setSize(2, 2);
 		
-		// creating Safe Zones (to contain the jails)
+		// creating Safe Zones
 		
 		// White
-		Crafty.e('SafeZone').at(10, 17).setSize(6, 6);
+		Crafty.e('SafeZone').at(1, 1).setSize(5, 5);
 		// Black
-		Crafty.e('SafeZone').at(144, 17).setSize(6, 6);
+		Crafty.e('SafeZone').at(154, 34).setSize(5, 5);
 		
 		// creating Flags
 		
 		// White
-		Crafty.e('Flag').at(4, 4).setSize(1, 1).setColor("white");
+		Crafty.e('Flag').at(3, 3).setSize(1, 1).setColor("white");
 		// Black
-		Crafty.e('Flag').at(155, 35).setSize(1, 1).setColor("black");
+		Crafty.e('Flag').at(156, 36).setSize(1, 1).setColor("black");
 
 	},
 	
