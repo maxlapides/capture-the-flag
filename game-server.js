@@ -38,7 +38,7 @@ function startGame() {
 
 	// set player positions
 	_.each(_.values(players), function(thisPlayer) {
-	
+
 		if(thisPlayer.team === "white") {
 			thisPlayer.x = Math.random()*5 + 15;
 			thisPlayer.y = Math.random()*15 + 15;
@@ -47,7 +47,7 @@ function startGame() {
 			thisPlayer.x = Math.random()*5 + 139;
 			thisPlayer.y = Math.random()*15 + 15;
 		}
-		
+
 		io.sockets.emit("init player", {id:thisPlayer.id, x: thisPlayer.x, y: thisPlayer.y});
 	});
 
@@ -103,7 +103,7 @@ function updateWaitingMessage() {
 		var countdownCounter = 3;
 
 		countdown = setInterval(function() {
-		
+
 			// it should theoretically never hit this case
 			// but better safe than sorry.
 			if(gameInProgress) {
@@ -165,7 +165,8 @@ function onClientDisconnect() {
 	this.broadcast.emit("remove player", {id: this.id});
 
 	// Update the waiting room message
-	updateWaitingMessage();
+	if(!gameInProgress) { updateWaitingMessage(); }
+
 }
 
 // New player has joined
@@ -192,7 +193,7 @@ function onNewPlayer(data) {
 	playersCount++;
 
 	// Update the waiting room message
-	updateWaitingMessage();
+	if(!gameInProgress) { updateWaitingMessage(); }
 
 }
 
@@ -245,17 +246,22 @@ function onTag(data) {
 }
 
 function flagReset(data) {
-	
+
+	var teamReset;
+
 	// tagged player is carrying opposite teams flag, so we switch team here
 	if(data.team === "white") {
 	
-		// notify all other clients that flag reset occured
-		io.sockets.emit("flag reset", {team: "black"});
+		teamReset = "black";
 	}
 	else {
 		
-		io.sockets.emit("flag reset", {team: "white"});
+		teamReset = "white";
 	}
+
+	// notify all other clients that flag reset occured
+	io.sockets.emit("flag reset", {team: teamReset});
+
 }
 
 function flagPickUp(data) {
@@ -276,9 +282,7 @@ function onSocketConnection(client) {
 	});
 
 	// if there is already a game in progress, notify the client
-	if(gameInProgress) {
-		client.emit("game in progress");
-	}
+	if(gameInProgress) { client.emit("game in progress"); }
 
 	// otherwise, add this player to the inactive players array
 	else {
@@ -302,10 +306,10 @@ function onSocketConnection(client) {
 
 	// Listen for tags
 	client.on("tag", onTag);
-	
+
 	// Listen for flag reset
 	client.on("flag reset", flagReset);
-	
+
 	// Listen for flag pick up
 	client.on("flag pick up", flagPickUp);
 
