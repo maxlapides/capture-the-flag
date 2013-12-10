@@ -97,7 +97,7 @@ function updateWaitingMessage() {
 		countdown = setInterval(function() {
 
 			// stop countdown after 30 seconds
-			if(countdownCounter < 1) {
+			if(countdownCounter === 0) {
 				clearInterval(countdown);
 				io.sockets.emit("start game");
 				startGame();
