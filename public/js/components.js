@@ -109,7 +109,7 @@ Crafty.c('Flag', {
 				z: 1
 			});
 	},
-	
+
 	setColor: function(team) {
 		if(team === "white") {
 			this.color(CapColors.pink);
@@ -117,7 +117,7 @@ Crafty.c('Flag', {
 		else {
 			this.color(CapColors.aqua);
 		}
-		
+
 		return this;
 	}
 
@@ -160,6 +160,7 @@ Crafty.c('PlayerCharacter', {
 	postMovement: function() {
 
 		this.bind('Moved', function() {
+			// post updated position to server
 			socket.emit("move", {x: this.x , y: this.y});
 		});
 
@@ -182,16 +183,19 @@ Crafty.c('PlayerCharacter', {
 			this.y -= this._movement.y;
 		}
 
+		// post updated position to server
+		socket.emit("move", {x: this.x , y: this.y});
+
 		return this;
 
 	},
-	
+
 	stopMovementSemi: function() {
-		
+
 		if(this.x < Game.map_grid.width * Game.map_grid.tile.width / 2) {
-		
+
 			if(player.team === "white") {
-			
+
 				this._speed = 0;
 				if (this._movement) {
 					this.x -= this._movement.x;
@@ -200,9 +204,9 @@ Crafty.c('PlayerCharacter', {
 			}
 		}
 		else {
-			
+
 			if(player.team === "black") {
-				
+
 				this._speed = 0;
 				if (this._movement) {
 					this.x -= this._movement.x;
@@ -210,7 +214,10 @@ Crafty.c('PlayerCharacter', {
 				}
 			}
 		}
-		
+
+		// post updated position to server
+		socket.emit("move", {x: this.x , y: this.y});
+
 		return this;
 	},
 
@@ -252,11 +259,11 @@ Crafty.c('PlayerCharacter', {
 			console.log("sending to jail");
 		}
 	},
-	
+
 	/*flagPickUp: function() {
-		
-		
-		
+
+
+
 	}*/
 
 	disableOnChat: function() {
