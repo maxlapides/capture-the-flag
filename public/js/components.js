@@ -106,6 +106,7 @@ Crafty.c('PlayerCharacter', {
 	pcCollisions: function() {
 
 		this.onHit('Solid', this.stopMovement);
+		this.onHit('Player', this.playerTag);
 
 		return this;
 
@@ -121,6 +122,45 @@ Crafty.c('PlayerCharacter', {
 
 		return this;
 
+	},
+	
+	playerTag: function(collisionData) {
+	
+		var captureBool = false;
+		
+		if(this.x < Game.map_grid.width * Game.map_grid.tile.width / 2) {
+		
+			if(player.team === "white") {
+				
+				_.each(collisionData, function(curPlayer) {
+					
+					if(curPlayer.obj._color === CapColors.black) {
+						
+						captureBool = true;
+					}
+				});
+			}
+		}
+		else {
+		
+			if(player.team === "black") {
+				
+				_.each(collisionData, function(curPlayer) {
+					
+					if(curPlayer.obj._color === CapColors.white) {
+						
+						captureBool = true;
+					}
+				});
+			}
+		}
+		
+		if(captureBool) {
+		
+			// send player to jail
+			this.color('rgb(20,75,40)');
+			console.log("sending to jail");
+		}
 	},
 
 	disableOnChat: function() {

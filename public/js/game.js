@@ -21,10 +21,10 @@ Game = {
 		Crafty.background(CapColors.gray30);
 		Crafty.scene('Start');
 
-		// Initialise socket connection
+		// Initialize socket connection
 		socket = io.connect("http://localhost", {port: 8000, transports: ["websocket"]});
 
-		// Initialise remote players array
+		// Initialize remote players array
 		remotePlayers = {};
 
 		// clear list items from previous game
