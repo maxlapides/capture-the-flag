@@ -9,6 +9,8 @@ Crafty.c('Player', {
 				z: 2
 			});
 	},
+	
+	type: "player",
 
 	setTeam: function(team) {
 		if(team === "white") {
@@ -49,6 +51,7 @@ Crafty.c('PlayerCharacter', {
 		this.onHit('Solid', this.stopMovement);
 		this.onHit('Player', this.playerTag);
 		this.onHit('Semisolid', this.stopMovementSemi);
+		this.onHit('Flag', this.flagPickUp);
 		return this;
 	},
 
@@ -150,10 +153,22 @@ Crafty.c('PlayerCharacter', {
 
 		_.each(collisionData, function(curr) {
 			
-			console.log(curr.obj);
+			if(curr.obj.type === "flag" && curr.obj.captured === false) {
+			
+				player.entity.color(curr.obj._color);
+				curr.obj.visible(false);
+				curr.obj.captured = true;
+				
+				// this needs to get pushed to the server somehow?
+				
+			}
 		});
 
 	},
+	
+	/*jailRelease: function() {
+		
+	},*/
 
 	disableOnChat: function() {
 
