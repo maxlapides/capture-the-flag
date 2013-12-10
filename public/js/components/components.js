@@ -1,6 +1,6 @@
 /* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors */
 
-//@codekit-prepend "components/Player.js"
+//@codekit-prepend "Player.js"
 
 Crafty.c('Grid', {
 
@@ -111,7 +111,7 @@ Crafty.c('Flag', {
 				z: 1
 			});
 	},
-	
+
 	captured: false,
 
 	setColor: function(team) {
