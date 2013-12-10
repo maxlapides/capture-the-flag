@@ -1,7 +1,9 @@
 /* global Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true */
 
-//@codekit-prepend 'colors.js', 'Player.js', 'eventHandlers.js'
+//@codekit-prepend 'colors.js', 'Player.js', 'eventHandlers.js', 'maps.js'
 //@codekit-append 'components.js', 'scenes.js'
+
+var mapDesignMode = false;
 
 Game = {
 
@@ -16,10 +18,29 @@ Game = {
 
 	start: function() {
 
-		Crafty.init(480, 320);
-		Crafty.viewport.init(480, 320);
+		var viewportWidth, viewportHeight;
+
+		// set the visible area on the screen
+		if(mapDesignMode) {
+			viewportWidth = Game.map_grid.tile.width * Game.map_grid.width;
+			viewportHeight = Game.map_grid.tile.height * Game.map_grid.height;
+		} else {
+			viewportWidth = 480;
+			viewportHeight = 320;
+		}
+
+		Crafty.init(viewportWidth, viewportHeight);
+		Crafty.viewport.init(viewportWidth, viewportHeight);
+
+		// add a background color to the whole project
 		Crafty.background(CapColors.gray30);
-		Crafty.scene('Start');
+
+		// set the starting scene
+		if(mapDesignMode) {
+			Crafty.scene('Game');
+		} else {
+			Crafty.scene('Start');
+		}
 
 		// Initialize socket connection
 		socket = io.connect("http://localhost", {port: 8000, transports: ["websocket"]});
