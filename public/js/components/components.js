@@ -1,4 +1,4 @@
-/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors */
+/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, flags, CapColors */
 
 //@codekit-prepend "Player.js"
 
@@ -120,18 +120,43 @@ Crafty.c('Flag', {
 	},
 	
 	type: "flag",
+	team: "",
+	id: 0,
 
 	captured: false,
 
 	setColor: function(team) {
+	
+		this.team = team;
+	
 		if(team === "white") {
 			this.color(CapColors.pink);
+			this.id = 0;
 		}
 		else {
 			this.color(CapColors.aqua);
+			this.id = 1;
 		}
+		
+		flags[this.id] = this;
 
 		return this;
+	},
+	
+	flagPickUp: function(pickUpTeam) {
+		
+		if(this.team === pickUpTeam) {
+			this.color(CapColors.gray50);
+			this.captured = true;
+		}
+	},
+	
+	flagReset: function(resetTeam) {
+
+			if(this.team === resetTeam) {
+				this.setColor(resetTeam);
+				this.captured = false;
+			}
 	}
 
 });

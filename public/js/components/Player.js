@@ -45,6 +45,23 @@ Crafty.c('Player', {
 
 		// get the tagged player
 		var thisPlayer = playerByEntityId(this[0]);
+		
+		// check to see if they were carrying the flag
+		// if so, change their color back and return the flag
+		console.log(thisPlayer.team);
+		console.log(thisPlayer.entity._color);
+		if(thisPlayer.team === "white" && thisPlayer.entity._color !== CapColors.white) {
+		
+			thisPlayer.color(CapColors.white);
+			// send to server a flag return
+			socket.emit("flag reset", {team: thisPlayer.team});
+		}
+		else if(thisPlayer.team === "black" && thisPlayer.entity._color !== CapColors.black) {
+			
+			thisPlayer.color(CapColors.black);
+			// send to server a flag return
+			socket.emit("flag reset", {team: thisPlayer.team});
+		}
 
 		// move player to jail
 		thisPlayer.moveToJail();
@@ -174,10 +191,14 @@ Crafty.c('PlayerCharacter', {
 			if(curr.obj.type === "flag" && curr.obj.captured === false) {
 
 				player.entity.color(curr.obj._color);
-				curr.obj.visible(false);
+				curr.obj.color(CapColors.gray50);
 				curr.obj.captured = true;
 
-				// this needs to get pushed to the server somehow?
+				// post flag pick up to server
+				socket.emit("flag pick up", {team: curr.obj.team,
+												id: player.id,
+												color: player.entity._color});
+				
 
 			}
 

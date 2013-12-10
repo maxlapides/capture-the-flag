@@ -79,8 +79,8 @@ var Maps = {
 		Crafty.e('JailWall').at(149, 10).setSize(10, 1);
 
 		// set jail positions
-		whiteJailPos = {x: 3, y: 30};
-		blackJailPos = {x: 150, y: 3};
+		whiteJailPos = {x: 5, y: 35};
+		blackJailPos = {x: 155, y: 5};
 
 	},
 

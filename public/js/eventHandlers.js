@@ -1,4 +1,4 @@
-/* global Game:true, Crafty, io, Player, player, remotePlayers */
+/* global Game:true, Crafty, io, Player, player, remotePlayers, _, flags */
 
 var socket;
 
@@ -126,6 +126,25 @@ function onTag(data) {
 
 }
 
+function flagReset(data) {
+	
+	// call function flagReset(resetTeam) on both flags, correct one will reset
+	_.each(flags, function(x) {
+		x.flagReset(data.team);
+	});
+}
+
+function flagPickUp(data) {
+
+	// call function flagPickUp(pickUpTeam) on both flags
+	_.each(flags, function(x) {
+		x.flagPickUp(data.team);
+	});
+	
+	console.log(data.color);
+	remotePlayers[data.id].entity.color(data.color);
+}
+
 function setEventHandlers() {
 
 	// Socket connection successful
@@ -163,5 +182,11 @@ function setEventHandlers() {
 
 	// Player tagged
 	socket.on("tag", onTag);
+	
+	// Flag reset
+	socket.on("flag reset", flagReset);
+	
+	// Flag pick up
+	socket.on("flag pick up", flagPickUp);
 
 }

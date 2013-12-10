@@ -38,8 +38,16 @@ function startGame() {
 
 	// set player positions
 	_.each(_.values(players), function(thisPlayer) {
-		thisPlayer.x = Math.floor(Math.random()*11 + 5);
-		thisPlayer.y = Math.floor(Math.random()*11 + 5);
+	
+		if(thisPlayer.team === "white") {
+			thisPlayer.x = Math.random()*5 + 15;
+			thisPlayer.y = Math.random()*15 + 15;
+		}
+		else {
+			thisPlayer.x = Math.random()*5 + 139;
+			thisPlayer.y = Math.random()*15 + 15;
+		}
+		
 		io.sockets.emit("init player", {id:thisPlayer.id, x: thisPlayer.x, y: thisPlayer.y});
 	});
 
@@ -92,7 +100,7 @@ function updateWaitingMessage() {
 
 		util.log("Countdown initiated.");
 
-		var countdownCounter = 1;
+		var countdownCounter = 3;
 
 		countdown = setInterval(function() {
 
@@ -227,6 +235,24 @@ function onTag(data) {
 
 }
 
+function flagReset(data) {
+	
+	// tagged player is carrying opposite teams flag, so we switch team here
+	if(data.team === "white") {
+	
+		// notify all other clients that flag reset occured
+		this.broadcast.emit("flag reset", {team: "black"});
+	}
+	else {
+		
+		this.broadcast.emit("flag reset", {team: "white"});
+	}
+}
+
+function flagPickUp(data) {
+	this.broadcast.emit("flag pick up", {team: data.team, id: data.id});
+}
+
 // New socket connection
 function onSocketConnection(client) {
 	util.log("New player has connected: "+client.id);
@@ -267,6 +293,12 @@ function onSocketConnection(client) {
 
 	// Listen for tags
 	client.on("tag", onTag);
+	
+	// Listen for flag reset
+	client.on("flag reset", flagReset);
+	
+	// Listen for flag pick up
+	client.on("flag pick up", flagPickUp);
 
 }
 
