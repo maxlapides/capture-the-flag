@@ -9,7 +9,7 @@ Crafty.c('Player', {
 				z: 2
 			});
 	},
-	
+
 	type: "player",
 
 	team: "",
@@ -170,26 +170,23 @@ Crafty.c('PlayerCharacter', {
 	flagPickUp: function(collisionData) {
 
 		_.each(collisionData, function(curr) {
-<<<<<<< HEAD
-			console.log(curr.obj);
-=======
-			
+
 			if(curr.obj.type === "flag" && curr.obj.captured === false) {
-			
+
 				player.entity.color(curr.obj._color);
 				curr.obj.visible(false);
 				curr.obj.captured = true;
-				
+
 				// this needs to get pushed to the server somehow?
-				
+
 			}
->>>>>>> d7275356fe55112b70b2d2e3ad83ca961b010c59
+
 		});
 
 	},
-	
+
 	/*jailRelease: function() {
-		
+
 	},*/
 
 	disableOnChat: function() {
