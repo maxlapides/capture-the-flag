@@ -88,10 +88,34 @@ Crafty.c('SafeZone', {
 
 });
 
+Crafty.c('HidingZone', {
+
+	init: function() {
+		this.requires('Actor, Color, Grid')
+			.color(CapColors.gray70)
+			.attr({
+				z: 1
+			});
+	}
+
+});
+
+Crafty.c('Flag', {
+
+	init: function() {
+		this.requires('Actor, Color, Grid')
+			.color('rgb(100, 70, 100)')
+			.attr({
+				z: 1
+			});
+	}
+
+});
+
 Crafty.c('Player', {
 
 	init: function() {
-		this.requires('Actor, Color, Grid, Solid')
+		this.requires('Actor, Color, Grid')
 			.color('rgb(20,75,40)')
 			.attr({
 				z: 2

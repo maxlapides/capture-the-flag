@@ -8,8 +8,8 @@ var mapDesignMode = false;
 Game = {
 
 	map_grid : {
-		width:  80,
-		height: 25,
+		width:  160,
+		height: 40,
 		tile: {
 			width:  16,
 			height: 16
