@@ -103,10 +103,19 @@ function updateWaitingMessage() {
 		var countdownCounter = 3;
 
 		countdown = setInterval(function() {
+		
+			// it should theoretically never hit this case
+			// but better safe than sorry.
+			if(gameInProgress) {
+				util.log("Trying to start the game again!?");
+				clearInterval(countdown);
+				return;
+			}
 
 			// stop countdown after 30 seconds
 			if(countdownCounter === 0) {
 				clearInterval(countdown);
+				util.log("Starting the game!");
 				io.sockets.emit("start game");
 				startGame();
 				return;
