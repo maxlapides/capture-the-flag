@@ -48,17 +48,14 @@ Crafty.c('Player', {
 		
 		// check to see if they were carrying the flag
 		// if so, change their color back and return the flag
-		console.log(thisPlayer.team);
-		console.log(thisPlayer.entity._color);
 		if(thisPlayer.team === "white" && thisPlayer.entity._color !== CapColors.white) {
-		
-			thisPlayer.color(CapColors.white);
+			thisPlayer.entity.color(CapColors.white);
 			// send to server a flag return
 			socket.emit("flag reset", {team: thisPlayer.team});
 		}
 		else if(thisPlayer.team === "black" && thisPlayer.entity._color !== CapColors.black) {
 			
-			thisPlayer.color(CapColors.black);
+			thisPlayer.entity.color(CapColors.black);
 			// send to server a flag return
 			socket.emit("flag reset", {team: thisPlayer.team});
 		}
@@ -157,7 +154,7 @@ Crafty.c('PlayerCharacter', {
 
 			if(player.team === "white") {
 				_.each(collisionData, function(curPlayer) {
-					if(curPlayer.obj._color === CapColors.black) {
+					if(playerByEntityId(curPlayer.obj[0]).team === "black") {
 						captureBool = true;
 					}
 				});
@@ -168,7 +165,7 @@ Crafty.c('PlayerCharacter', {
 
 			if(player.team === "black") {
 				_.each(collisionData, function(curPlayer) {
-					if(curPlayer.obj._color === CapColors.white) {
+					if(playerByEntityId(curPlayer.obj[0]).team === "white") {
 						captureBool = true;
 					}
 				});

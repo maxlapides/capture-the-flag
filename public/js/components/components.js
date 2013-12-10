@@ -152,9 +152,17 @@ Crafty.c('Flag', {
 	},
 	
 	flagReset: function(resetTeam) {
+	
+			console.log("my team is" + this.team);
+			console.log("reset team is" + resetTeam);
 
-			if(this.team === resetTeam) {
-				this.setColor(resetTeam);
+			if(this.team === resetTeam && this.team === "white") {
+				this.color(CapColors.pink);
+				this.captured = false;
+			}
+			else if(this.team === resetTeam && this.team === "black") {
+				console.log("im in here");
+				this.color(CapColors.aqua);
 				this.captured = false;
 			}
 	}

@@ -1,4 +1,4 @@
-/* global Game:true, Crafty, io, Player, player, remotePlayers, _ */
+/* global Game:true, Crafty, io, Player, player, remotePlayers, CapColors, _ */
 
 var socket;
 var flags = [];
@@ -124,6 +124,15 @@ function onTag(data) {
 
 	// move the tagged player to jail
 	taggedPlayer.moveToJail();
+	
+	if(taggedPlayer.team === "white" && taggedPlayer.entity._color !== CapColors.white) {
+	
+		taggedPlayer.entity.color(CapColors.white);
+	}
+	else if(taggedPlayer.team === "black" && taggedPlayer.entity._color !== CapColors.black) {
+		
+		taggedPlayer.entity.color(CapColors.black);
+	}
 
 }
 
@@ -142,7 +151,6 @@ function flagPickUp(data) {
 		x.flagPickUp(data.team);
 	});
 
-	console.log(data.color);
 	remotePlayers[data.id].entity.color(data.color);
 }
 

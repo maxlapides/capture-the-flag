@@ -250,16 +250,16 @@ function flagReset(data) {
 	if(data.team === "white") {
 	
 		// notify all other clients that flag reset occured
-		this.broadcast.emit("flag reset", {team: "black"});
+		io.sockets.emit("flag reset", {team: "black"});
 	}
 	else {
 		
-		this.broadcast.emit("flag reset", {team: "white"});
+		io.sockets.emit("flag reset", {team: "white"});
 	}
 }
 
 function flagPickUp(data) {
-	this.broadcast.emit("flag pick up", {team: data.team, id: data.id});
+	this.broadcast.emit("flag pick up", {team: data.team, id: data.id, color: data.color});
 }
 
 // New socket connection
