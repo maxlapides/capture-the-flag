@@ -15,5 +15,7 @@ var CapColors = {
 	gray70		: genGray(70),
 	gray80		: genGray(80),
 	gray90		: genGray(90),
-	black		: genGray(100)
+	black		: genGray(100),
+	pink		: 'rgb(255, 52, 179)',
+	aqua		: 'rgb(0, 255, 255)',
 };

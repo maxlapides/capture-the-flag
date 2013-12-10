@@ -62,9 +62,9 @@ var Maps = {
 		// creating Flags
 		
 		// White
-		Crafty.e('Flag').at(4, 4).setSize(1, 1);
+		Crafty.e('Flag').at(4, 4).setSize(1, 1).setColor("white");
 		// Black
-		Crafty.e('Flag').at(155, 35).setSize(1, 1);
+		Crafty.e('Flag').at(155, 35).setSize(1, 1).setColor("black");
 
 	},
 	

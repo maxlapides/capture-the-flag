@@ -58,7 +58,7 @@ Crafty.c('Actor', {
 Crafty.c('Edge', {
 
 	init: function() {
-		this.requires('Actor, Solid, Color, Grid, Solid')
+		this.requires('Actor, Solid, Color, Grid')
 			.color('black')
 			.attr({
 				z: 3
@@ -79,7 +79,7 @@ Crafty.c('Obstacle', {
 Crafty.c('SafeZone', {
 
 	init: function() {
-		this.requires('Actor, Color, Grid')
+		this.requires('Actor, Color, Grid, Semisolid')
 			.color(CapColors.gray50)
 			.attr({
 				z: 1
@@ -94,7 +94,7 @@ Crafty.c('HidingZone', {
 		this.requires('Actor, Color, Grid')
 			.color(CapColors.gray70)
 			.attr({
-				z: 1
+				z: 3
 			});
 	}
 
@@ -108,6 +108,17 @@ Crafty.c('Flag', {
 			.attr({
 				z: 1
 			});
+	},
+	
+	setColor: function(team) {
+		if(team === "white") {
+			this.color(CapColors.pink);
+		}
+		else {
+			this.color(CapColors.aqua);
+		}
+		
+		return this;
 	}
 
 });
@@ -159,6 +170,7 @@ Crafty.c('PlayerCharacter', {
 	pcCollisions: function() {
 		this.onHit('Solid', this.stopMovement);
 		this.onHit('Player', this.playerTag);
+		this.onHit('Semisolid', this.stopMovementSemi);
 		return this;
 	},
 
@@ -172,6 +184,34 @@ Crafty.c('PlayerCharacter', {
 
 		return this;
 
+	},
+	
+	stopMovementSemi: function() {
+		
+		if(this.x < Game.map_grid.width * Game.map_grid.tile.width / 2) {
+		
+			if(player.team === "white") {
+			
+				this._speed = 0;
+				if (this._movement) {
+					this.x -= this._movement.x;
+					this.y -= this._movement.y;
+				}
+			}
+		}
+		else {
+			
+			if(player.team === "black") {
+				
+				this._speed = 0;
+				if (this._movement) {
+					this.x -= this._movement.x;
+					this.y -= this._movement.y;
+				}
+			}
+		}
+		
+		return this;
 	},
 	
 	playerTag: function(collisionData) {
@@ -212,6 +252,12 @@ Crafty.c('PlayerCharacter', {
 			console.log("sending to jail");
 		}
 	},
+	
+	/*flagPickUp: function() {
+		
+		
+		
+	}*/
 
 	disableOnChat: function() {
 
