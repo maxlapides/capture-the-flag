@@ -1,4 +1,4 @@
-/* global _, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors */
+/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors */
 
 Crafty.c('Grid', {
 
@@ -149,8 +149,8 @@ Crafty.c('Player', {
 Crafty.c('PlayerCharacter', {
 
 	init: function() {
-		this.requires('Player, Multiway, Collision')
-			.multiway(4, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW: 0, LEFT_ARROW: 180})
+		this.requires('Player, Multiway, Collision, Keyboard')
+			.multiway(Settings.playerSpeed, {UP_ARROW: -90, DOWN_ARROW: 90, RIGHT_ARROW: 0, LEFT_ARROW: 180})
 			.color('rgb(20,75,40)')
 			.postMovement()
 			.pcCollisions()
@@ -213,40 +213,40 @@ Crafty.c('PlayerCharacter', {
 		
 		return this;
 	},
-	
+
 	playerTag: function(collisionData) {
-	
+
 		var captureBool = false;
-		
+
 		if(this.x < Game.map_grid.width * Game.map_grid.tile.width / 2) {
-		
+
 			if(player.team === "white") {
-				
+
 				_.each(collisionData, function(curPlayer) {
-					
+
 					if(curPlayer.obj._color === CapColors.black) {
-						
+
 						captureBool = true;
 					}
 				});
 			}
 		}
 		else {
-		
+
 			if(player.team === "black") {
-				
+
 				_.each(collisionData, function(curPlayer) {
-					
+
 					if(curPlayer.obj._color === CapColors.white) {
-						
+
 						captureBool = true;
 					}
 				});
 			}
 		}
-		
+
 		if(captureBool) {
-		
+
 			// send player to jail
 			this.color('rgb(20,75,40)');
 			console.log("sending to jail");
