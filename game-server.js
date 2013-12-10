@@ -25,6 +25,10 @@ var inactivePlayers,			// Array of connected players
 
 function startGame() {
 
+	// it should theoretically never hit this case
+	// but better safe than sorry.
+	if(gameInProgress) { return; }
+
 	gameInProgress = true;
 
 	// notify each of the inactive players that the game is in progress
