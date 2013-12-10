@@ -251,11 +251,9 @@ function flagReset(data) {
 
 	// tagged player is carrying opposite teams flag, so we switch team here
 	if(data.team === "white") {
-	
 		teamReset = "black";
 	}
 	else {
-		
 		teamReset = "white";
 	}
 

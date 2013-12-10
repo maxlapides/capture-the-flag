@@ -50,8 +50,16 @@ function onRemovePlayer(data) {
 		return;
 	}
 
-	// remove player from waiting room
-	$('#waiting-room li#player-' + player.id).remove();
+	if(player.entity) {
+		// destroy the player entity
+		player.entity.destroy();
+		// remove player from the list of free/captured teammates
+		player.removeFromBelowGame();
+	}
+	else {
+		// remove player from waiting room
+		$('#waiting-room li#player-' + player.id).remove();
+	}
 
 	// Remove player from array
 	delete remotePlayers[data.id];
@@ -124,13 +132,13 @@ function onTag(data) {
 
 	// move the tagged player to jail
 	taggedPlayer.moveToJail();
-	
+
 	if(taggedPlayer.team === "white" && taggedPlayer.entity._color !== CapColors.white) {
-	
+
 		taggedPlayer.entity.color(CapColors.white);
 	}
 	else if(taggedPlayer.team === "black" && taggedPlayer.entity._color !== CapColors.black) {
-		
+
 		taggedPlayer.entity.color(CapColors.black);
 	}
 

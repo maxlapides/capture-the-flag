@@ -15,9 +15,13 @@ var Player = function(id, username) {
 		this.capture();
 	};
 
+	this.removeFromBelowGame = function() {
+		$('#below-game li#player-' + this.id).remove();
+	};
+
 	this.free = function() {
 		if(this.team === player.team) {
-			$('#below-game li#player-' + this.id).remove();
+			this.removeFromBelowGame();
 			var freeTeammates = $('#free-teammates ul');
 			freeTeammates.append('<li id="player-' + this.id + '">' + this.username + '</li>');
 		}
@@ -25,7 +29,7 @@ var Player = function(id, username) {
 
 	this.capture = function() {
 		if(this.team === player.team) {
-			$('#below-game li#player-' + this.id).remove();
+			this.removeFromBelowGame();
 			var capturedTeammates = $('#captured-teammates ul');
 			capturedTeammates.append('<li id="player-' + this.id + '">' + this.username + '</li>');
 		}
