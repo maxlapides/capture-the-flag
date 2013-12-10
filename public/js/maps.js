@@ -57,11 +57,9 @@ var Maps = {
 
 		// creating Safe Zones
 
-		// creating Safe Zones (to contain the jails)
-
-		// White
+		// White Flag
 		Crafty.e('SafeZone').at(1, 1).setSize(5, 5);
-		// Black
+		// Black Flag
 		Crafty.e('SafeZone').at(154, 34).setSize(5, 5);
 
 		// creating Flags
@@ -70,6 +68,15 @@ var Maps = {
 		Crafty.e('Flag').at(3, 3).setSize(1, 1).setColor("white");
 		// Black
 		Crafty.e('Flag').at(156, 36).setSize(1, 1).setColor("black");
+		
+		// creating Jails
+		
+		// White
+		Crafty.e('JailWall').at(1, 29).setSize(10, 1);
+		Crafty.e('JailWall').at(10, 29).setSize(1, 10);
+		// Black
+		Crafty.e('JailWall').at(149, 1).setSize(1, 10);
+		Crafty.e('JailWall').at(149, 10).setSize(10, 1);
 
 		// set jail positions
 		whiteJailPos = {x: 3, y: 30};

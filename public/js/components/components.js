@@ -78,6 +78,13 @@ Crafty.c('Obstacle', {
 
 });
 
+Crafty.c('JailWall', {
+	
+	init: function() {
+		this.requires('Obstacle');
+	}
+});
+
 Crafty.c('SafeZone', {
 
 	init: function() {
@@ -111,6 +118,8 @@ Crafty.c('Flag', {
 				z: 1
 			});
 	},
+	
+	type: "flag",
 
 	captured: false,
 
