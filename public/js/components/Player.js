@@ -137,14 +137,14 @@ Crafty.c('PlayerCharacter', {
 		}
 	},
 
-	/*flagPickUp: function(collisionData) {
+	flagPickUp: function(collisionData) {
 
 		_.each(collisionData, function(curr) {
 			
-			
-		})
+			console.log(curr.obj);
+		});
 
-	}*/
+	},
 
 	disableOnChat: function() {
 
