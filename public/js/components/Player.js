@@ -1,4 +1,4 @@
-/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors */
+/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors, blackJailPos, whiteJailPos */
 
 Crafty.c('Player', {
 
@@ -105,43 +105,52 @@ Crafty.c('PlayerCharacter', {
 		if(this.x < Game.map_grid.width * Game.map_grid.tile.width / 2) {
 
 			if(player.team === "white") {
-
 				_.each(collisionData, function(curPlayer) {
-
 					if(curPlayer.obj._color === CapColors.black) {
-
 						captureBool = true;
 					}
 				});
 			}
+
 		}
 		else {
 
 			if(player.team === "black") {
-
 				_.each(collisionData, function(curPlayer) {
-
 					if(curPlayer.obj._color === CapColors.white) {
-
 						captureBool = true;
 					}
 				});
 			}
+
 		}
 
 		if(captureBool) {
 
+			console.log(collisionData);
+
+			/*
 			// send player to jail
-			this.color('rgb(20,75,40)');
+			if(curPlayer.obj._color === CapColors.white) {
+				curPlayer.obj.x = blackJailPos.x;
+				curPlayer.obj.y = blackJailPos.y;
+			}
+			else {
+				curPlayer.obj.x = whiteJailPos.x;
+				curPlayer.obj.y = whiteJailPos.y;
+			}
+			*/
+
 			console.log("sending to jail");
+
 		}
 	},
 
 	/*flagPickUp: function(collisionData) {
 
 		_.each(collisionData, function(curr) {
-			
-			
+
+
 		})
 
 	}*/
