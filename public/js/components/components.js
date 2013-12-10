@@ -111,6 +111,8 @@ Crafty.c('Flag', {
 				z: 1
 			});
 	},
+	
+	captured: false,
 
 	setColor: function(team) {
 		if(team === "white") {
