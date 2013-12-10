@@ -1,7 +1,7 @@
 /* global Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true */
 
 //@codekit-prepend 'settings.js', colors.js', 'Player.js', 'eventHandlers.js', 'maps.js'
-//@codekit-append 'components.js', 'scenes.js'
+//@codekit-append 'components/components.js', 'scenes.js'
 
 var mapDesignMode = false;
 

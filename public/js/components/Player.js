@@ -1,6 +1,5 @@
 /* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors */
 
-
 Crafty.c('Player', {
 
 	init: function() {
