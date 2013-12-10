@@ -54,7 +54,7 @@ var Maps = {
 		// inner zones, bottom/black side
 		Crafty.e('HidingZone').at(98, 28).setSize(2, 2);
 		Crafty.e('HidingZone').at(113, 28).setSize(2, 2);
-		
+
 		// creating Safe Zones
 
 		// creating Safe Zones (to contain the jails)
@@ -72,8 +72,8 @@ var Maps = {
 		Crafty.e('Flag').at(156, 36).setSize(1, 1).setColor("black");
 
 		// set jail positions
-		whiteJailPos = {x: 1, y: 39};
-		blackJailPos = {x: 159, y: 1};
+		whiteJailPos = {x: 3, y: 30};
+		blackJailPos = {x: 150, y: 3};
 
 	},
 

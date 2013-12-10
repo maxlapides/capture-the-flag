@@ -38,8 +38,8 @@ function startGame() {
 
 	// set player positions
 	_.each(_.values(players), function(thisPlayer) {
-		thisPlayer.x = Math.floor(Math.random()*11 + 1);
-		thisPlayer.y = Math.floor(Math.random()*11 + 1);
+		thisPlayer.x = Math.floor(Math.random()*11 + 5);
+		thisPlayer.y = Math.floor(Math.random()*11 + 5);
 		io.sockets.emit("init player", {id:thisPlayer.id, x: thisPlayer.x, y: thisPlayer.y});
 	});
 
@@ -210,6 +210,23 @@ function onMove(data) {
 	this.broadcast.emit("move", {id: player.id, x: data.x, y: data.y});
 }
 
+function onTag(data) {
+
+	// get relevant players
+	var tagger = players[this.id];
+	var taggedPlayer = players[data.id];
+
+	// increment tag counts
+	tagger.tags++;
+	taggedPlayer.numTimesTagged++;
+
+	// notify all other clients that the tag occurred
+	this.broadcast.emit("tag", {id: taggedPlayer.id});
+
+	util.log(tagger.username + " tagged " + taggedPlayer.username);
+
+}
+
 // New socket connection
 function onSocketConnection(client) {
 	util.log("New player has connected: "+client.id);
@@ -247,6 +264,9 @@ function onSocketConnection(client) {
 
 	// Listen for player movement
 	client.on("move", onMove);
+
+	// Listen for tags
+	client.on("tag", onTag);
 
 }
 

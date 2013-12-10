@@ -108,6 +108,24 @@ function onMove(data) {
 	player.entity.y = data.y;
 }
 
+function onTag(data) {
+
+	var taggedPlayer;
+
+	// if the tagged player if you
+	if(player.id === data.id) {
+		taggedPlayer = player;
+	}
+	// otherwise, the tagged player must be remote
+	else {
+		taggedPlayer = remotePlayers[data.id];
+	}
+
+	// move the tagged player to jail
+	taggedPlayer.moveToJail();
+
+}
+
 function setEventHandlers() {
 
 	// Socket connection successful
@@ -142,5 +160,8 @@ function setEventHandlers() {
 
 	// Player movements
 	socket.on("move", onMove);
+
+	// Player tagged
+	socket.on("tag", onTag);
 
 }

@@ -83,12 +83,12 @@ Crafty.scene('Game', function() {
 	}
 
 	// add teammates to free list
-	var freeTeammates = $('#free-teammates ul');
 	_.each(remotePlayers, function(thisPlayer) {
 		if(thisPlayer.team === player.team) {
-			freeTeammates.append('<li id="player-' + thisPlayer.id + '">' + thisPlayer.username + '</li>');
+			thisPlayer.free();
 		}
 	});
+	player.free();
 
 	// set map
 	Maps.map1();

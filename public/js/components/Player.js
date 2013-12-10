@@ -1,4 +1,4 @@
-/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors, blackJailPos, whiteJailPos */
+/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors, blackJailPos, whiteJailPos, playerByEntityId */
 
 Crafty.c('Player', {
 
@@ -10,7 +10,12 @@ Crafty.c('Player', {
 			});
 	},
 
+	team: "",
+
 	setTeam: function(team) {
+
+		this.team = team;
+
 		if(team === "white") {
 			this.color(CapColors.white);
 		} else {
@@ -18,6 +23,32 @@ Crafty.c('Player', {
 		}
 
 		return this;
+
+	},
+
+	moveToJail: function() {
+
+		if(this.team === "white") {
+			this.x = blackJailPos.x * Game.map_grid.tile.width;
+			this.y = blackJailPos.y * Game.map_grid.tile.height;
+		}
+		else {
+			this.x = whiteJailPos.x * Game.map_grid.tile.width;
+			this.y = whiteJailPos.y * Game.map_grid.tile.height;
+		}
+
+	},
+
+	tag: function() {
+
+		// get the tagged player
+		var thisPlayer = playerByEntityId(this[0]);
+
+		// move player to jail
+		thisPlayer.moveToJail();
+
+		// post tag to server
+		socket.emit("tag", {id: thisPlayer.id});
 
 	}
 
@@ -47,7 +78,7 @@ Crafty.c('PlayerCharacter', {
 
 	pcCollisions: function() {
 		this.onHit('Solid', this.stopMovement);
-		this.onHit('Player', this.playerTag);
+		this.onHit('Player', this.detectTag);
 		this.onHit('Semisolid', this.stopMovementSemi);
 		return this;
 	},
@@ -98,7 +129,7 @@ Crafty.c('PlayerCharacter', {
 		return this;
 	},
 
-	playerTag: function(collisionData) {
+	detectTag: function(collisionData) {
 
 		var captureBool = false;
 
@@ -126,30 +157,16 @@ Crafty.c('PlayerCharacter', {
 		}
 
 		if(captureBool) {
-
-			console.log(collisionData);
-
-			/*
-			// send player to jail
-			if(curPlayer.obj._color === CapColors.white) {
-				curPlayer.obj.x = blackJailPos.x;
-				curPlayer.obj.y = blackJailPos.y;
-			}
-			else {
-				curPlayer.obj.x = whiteJailPos.x;
-				curPlayer.obj.y = whiteJailPos.y;
-			}
-			*/
-
-			console.log("sending to jail");
-
+			_.each(collisionData, function(curPlayer) {
+				curPlayer.obj.tag();
+			});
 		}
+
 	},
 
 	flagPickUp: function(collisionData) {
 
 		_.each(collisionData, function(curr) {
-			
 			console.log(curr.obj);
 		});
 
