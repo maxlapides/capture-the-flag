@@ -303,8 +303,6 @@ function incScore(data) {
 
 	// if the game is over
 	if(score[scoringTeam] > 2) {
-
-		// tell all clients that the game has ended
 		io.sockets.emit("game over", {score: score, players: players});
 
 		// set game over

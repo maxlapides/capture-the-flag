@@ -290,6 +290,14 @@ function gameOver(data) {
 
 	// show the score card below the waiting room
 	$('#scorecard').html("").show();
+	
+	// play winning and losing sounds
+	if(player.team === winningTeam) {
+		Crafty.audio.play("win");
+	}
+	else {
+		Crafty.audio.play("lose");
+	}
 
 	// separate players into teams
 	var blackStats = [], whiteStats = [];

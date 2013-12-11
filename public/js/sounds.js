@@ -7,3 +7,5 @@
 		Crafty.audio.add("jailDoor", "sounds/Jail_Door.mp3");
 		Crafty.audio.add("flagGet", "sounds/shooting_star.mp3");
 		Crafty.audio.add("tag", "sounds/Water_Drop_Low.mp3");
+		Crafty.audio.add("win", "sounds/Tada.mp3");
+		Crafty.audio.add("lose", "sounds/Thunder.mp3");
