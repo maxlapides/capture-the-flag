@@ -7,6 +7,12 @@ var Maps = {
 
 	map1: function() {
 
+
+	},
+
+	map2: function() {
+
+			
 		// creating Obstacles
 
 		// large side walls (left)
@@ -81,12 +87,6 @@ var Maps = {
 		// set jail positions
 		whiteJailPos = {x: 5, y: 35};
 		blackJailPos = {x: 155, y: 5};
-
-	},
-
-	map2: function() {
-
-
 	}
 
 };
