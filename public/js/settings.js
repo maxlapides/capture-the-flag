@@ -1,3 +1,4 @@
 var Settings = {
-	playerSpeed	: 4
+	playerSpeed		: 4,
+	mapDesignMap	: 4
 };

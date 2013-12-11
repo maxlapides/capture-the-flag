@@ -1,4 +1,4 @@
-/* global Game:true, Crafty, io, socket:true, Player, player:true, remotePlayers:true, addChatMsg, _, addToWaitingRoom, CapColors, mapDesignMode, Maps */
+/* global Game:true, Crafty, io, socket:true, Player, player:true, remotePlayers:true, addChatMsg, _, addToWaitingRoom, CapColors, mapDesignMode, Maps, Settings */
 
 Crafty.scene('Start', function() {
 
@@ -89,7 +89,7 @@ Crafty.scene('Game', function() {
 	player.free();
 
 	// set map for map design mode
-	if(mapDesignMode) { Maps.map1(); }
+	if(mapDesignMode) { Maps[Settings.mapDesignMap](); }
 
 	// chat message submitted
 	$('form#chatForm').submit(function(e) {
