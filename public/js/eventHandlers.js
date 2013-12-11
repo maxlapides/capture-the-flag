@@ -211,6 +211,35 @@ function incScore(data) {
 
 }
 
+function gameOver(data) {
+
+	/*
+
+	// get the final score
+	var score = data.score;
+
+	// get the winning team
+	var winningTeam;
+	if(score.white > score.black) {
+		winningTeam = "white";
+	} else {
+		winningTeam = "black";
+	}
+
+	// switch back to the waiting room
+	Crafty.scene('WaitingRoom');
+
+	// show the score card below the waiting room
+	$('#scorecard').html("").show();
+
+	// generate the score card
+	$('#scorecard').append('<h2>' + ((player.team === winningTeam) ? "Victory!" : "Defeat.") + '</h2>');
+	$('#scorecard').append('<h3><span>Black: ' + score.black + '</span><span>White: ' + score.white + '</span></h3>');
+
+	*/
+
+}
+
 function setEventHandlers() {
 
 	// Socket connection successful
@@ -260,5 +289,8 @@ function setEventHandlers() {
 
 	// Increment score
 	socket.on("increment score", incScore);
+
+	// Game over
+	socket.on("game over", gameOver);
 
 }

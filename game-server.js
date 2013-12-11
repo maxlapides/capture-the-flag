@@ -41,7 +41,6 @@ function startGame() {
 	score.white = 0;
 	score.black = 0;
 
-
 	// set player positions
 	_.each(_.values(players), function(thisPlayer) {
 
@@ -282,11 +281,18 @@ function jailRelease(data) {
 }
 
 function incScore(data) {
-	var scoringTeam = data.team;
 
+	var scoringTeam = data.team;
 	score[scoringTeam]++;
 
-	io.sockets.emit("increment score", {score: score, id: data.id});
+	if(score[scoringTeam] > 0) {
+		io.sockets.emit("game over", {score: score});
+		gameInProgress = false;
+	}
+	else {
+		io.sockets.emit("increment score", {score: score, id: data.id});
+	}
+
 }
 
 // New socket connection

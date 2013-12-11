@@ -13,10 +13,8 @@ Crafty.scene('Start', function() {
 		// (which might be reloading the page)
 		e.preventDefault();
 
-		// grab the username and sanitize it a little
-		// (because you know some cs dork is gonna try
-		// to mess up our game by entering some weird shit)
-		var username = encodeURI($('input#username').val().trim());
+		// grab the username
+		var username = $('input#username').val().trim();
 
 		// if the username is empty, stop here
 		if(!username) { return; }
