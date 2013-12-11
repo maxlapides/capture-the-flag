@@ -309,9 +309,15 @@ function incScore(data) {
 		// set game over
 		gameInProgress = false;
 
-		// kick everyone off their teams
+		// reset all player variables
 		_.each(players, function(player) {
 			player.team = "";
+			player.carryingFlag = false;
+			player.tags = 0;
+			player.timesTagged = 0;
+			player.flagCaps = 0;
+			player.flagReturns = 0;
+			player.jailReleases = 0;
 		});
 
 		// update the waiting message
@@ -378,7 +384,7 @@ function onSocketConnection(client) {
 
 	// Listen for increment score
 	client.on("increment score", incScore);
-	
+
 	// Listen for inc jail release
 	client.on("inc jail release", incJailRelease);
 
