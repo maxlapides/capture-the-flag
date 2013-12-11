@@ -214,6 +214,7 @@ function jailRelease(data) {
 
 		if(curr.team === data.team && curr.entity.jailed === true) {
 			curr.entity.jailed = false;
+			curr.free();
 			if(curr.team === "white") {
 				curr.entity.x = (Math.random()*5 + 15) * Game.map_grid.tile.width;
 				curr.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
@@ -227,6 +228,10 @@ function jailRelease(data) {
 
 	// also check yo self before you wreck yo self
 	if(player.team === data.team && player.entity.jailed === true) {
+	
+		player.entity.jailed = false;
+		player.free();
+		
 		if(player.team === "white") {
 				player.entity.x = (Math.random()*5 + 15) * Game.map_grid.tile.width;
 				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
