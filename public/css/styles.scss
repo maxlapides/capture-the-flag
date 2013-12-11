@@ -164,6 +164,20 @@ li {
 	top: 350px;
 	height: auto;
 
+	#score {
+		position: absolute;
+		top: -48px;
+		left: 8px;
+		color: black;
+		text-shadow: 1px 1px 0px white;
+
+		p {
+			padding: 0;
+			margin: 0;
+		}
+
+	}
+
 	h2 {
 		font-size: 11px;
 		padding: 0;

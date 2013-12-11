@@ -198,7 +198,17 @@ function jailRelease(data) {
 }
 
 function incScore(data) {
-	console.log(data.score);
+
+	// change score
+	$('#score-white span').text(data.score.white);
+	$('#score-black span').text(data.score.black);
+
+	// update player color
+	var thisPlayer = remotePlayers[data.id];
+	if(thisPlayer) {
+		thisPlayer.entity.color(CapColors[thisPlayer.team]);
+	}
+
 }
 
 function setEventHandlers() {
@@ -247,7 +257,7 @@ function setEventHandlers() {
 
 	// Jail release
 	socket.on("jail release", jailRelease);
-	
+
 	// Increment score
 	socket.on("increment score", incScore);
 

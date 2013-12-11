@@ -36,7 +36,7 @@ function startGame() {
 	_.each(_.keys(inactivePlayers), function(inactivePlayer) {
 		io.sockets.socket(inactivePlayer).emit("game in progress");
 	});
-	
+
 	// set the initial score to 0-0
 	score.white = 0;
 	score.black = 0;
@@ -153,22 +153,12 @@ function updateWaitingMessage() {
 
 function flagReset(data) {
 
-	var teamReset;
-
-	// tagged player is carrying opposite teams flag, so we switch team here
-	if(data.team === "white") {
-		teamReset = "black";
-	}
-	else {
-		teamReset = "white";
-	}
-
 	// notify all other clients that flag reset occurred
-	io.sockets.emit("flag reset", {team: teamReset});
+	io.sockets.emit("flag reset", {team: data.team});
 
 	// set all players on the reset team to no longer be carrying the flag
 	_.each(_.values(players), function(thisPlayer) {
-		if(thisPlayer.team === teamReset) {
+		if(thisPlayer.team === data.team) {
 			thisPlayer.carryingFlag = false;
 		}
 	});
@@ -189,7 +179,7 @@ function onClientDisconnect() {
 
 	// Reset the flag if the player was carrying the flag
 	if(removePlayer.carryingFlag) {
-		flagReset(removePlayer.team);
+		flagReset({team: removePlayer.team});
 	}
 
 	// Remove player from players array
@@ -260,7 +250,9 @@ function onChatMsg(data) {
 
 function onMove(data) {
 	var player = players[this.id];
-	this.broadcast.emit("move", {id: player.id, x: data.x, y: data.y});
+	if(player) {
+		this.broadcast.emit("move", {id: player.id, x: data.x, y: data.y});
+	}
 }
 
 function onTag(data) {
@@ -291,10 +283,10 @@ function jailRelease(data) {
 
 function incScore(data) {
 	var scoringTeam = data.team;
-	
+
 	score[scoringTeam]++;
-	
-	io.sockets.emit("increment score", {score: score});
+
+	io.sockets.emit("increment score", {score: score, id: data.id});
 }
 
 // New socket connection
@@ -341,10 +333,10 @@ function onSocketConnection(client) {
 
 	// Listen for flag pick up
 	client.on("flag pick up", flagPickUp);
-	
+
 	// Listen for jail release
 	client.on("jail release", jailRelease);
-	
+
 	// Listen for increment score
 	client.on("increment score", incScore);
 

@@ -138,7 +138,7 @@ Crafty.c('PlayerCharacter', {
 						if(curr.team === "black") {
 							socket.emit("flag reset", {team: curr.team});
 							player.entity.color(CapColors.white);
-							socket.emit("increment score", {team: player.team});
+							socket.emit("increment score", {team: player.team, id: player.id});
 						}
 					});
 				}
@@ -148,6 +148,7 @@ Crafty.c('PlayerCharacter', {
 		else {
 
 			if(player.team === "black") {
+
 				this.stopMovement();
 
 				if(player.entity._color !== CapColors.black) {
@@ -156,7 +157,7 @@ Crafty.c('PlayerCharacter', {
 						if(curr.team === "white") {
 							socket.emit("flag reset", {team: curr.team});
 							player.entity.color(CapColors.black);
-							socket.emit("increment score", {team: player.team});
+							socket.emit("increment score", {team: player.team, id: player.id});
 						}
 					});
 				}
