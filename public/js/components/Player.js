@@ -1,4 +1,4 @@
-/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors, blackJailPos, whiteJailPos, playerByEntityId */
+/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors, blackJailPos, whiteJailPos, playerByEntityId, flags */
 
 Crafty.c('Player', {
 
@@ -131,6 +131,21 @@ Crafty.c('PlayerCharacter', {
 					this.x -= this._movement.x;
 					this.y -= this._movement.y;
 				}
+				
+				// if the player is in their own territory but arent their own color,
+				// they must have the flag
+				// so, we have to reset that flag (which belongs to the other team)
+				// and reset the players color (and increase the score)
+				if(player.entity._color !== CapColors.white) {
+					_.each(flags, function(curr) {
+					
+						if(curr.team === "black") {
+							socket.emit("flag reset", {team: curr.team});
+							player.entity.color(CapColors.white);
+							socket.emit("increment score", {team: player.team});
+						}
+					});
+				}
 			}
 		}
 		else {
@@ -142,6 +157,17 @@ Crafty.c('PlayerCharacter', {
 					this.x -= this._movement.x;
 					this.y -= this._movement.y;
 				}
+			}
+			
+			if(player.entity._color !== CapColors.black) {
+				_.each(flags, function(curr) {
+				
+					if(curr.team === "white") {
+						socket.emit("flag reset", {team: curr.team});
+						player.entity.color(CapColors.black);
+						socket.emit("increment score", {team: player.team});
+					}
+				});
 			}
 		}
 

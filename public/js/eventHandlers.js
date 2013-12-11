@@ -197,6 +197,10 @@ function jailRelease(data) {
 	}
 }
 
+function incScore(data) {
+	console.log(data.score);
+}
+
 function setEventHandlers() {
 
 	// Socket connection successful
@@ -243,5 +247,8 @@ function setEventHandlers() {
 
 	// Jail release
 	socket.on("jail release", jailRelease);
+	
+	// Increment score
+	socket.on("increment score", incScore);
 
 }

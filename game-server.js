@@ -17,7 +17,8 @@ var inactivePlayers,			// Array of connected players
 	players,					// Array of active players
 	playersCount,				// Number of connected players
 	countdown,					// Interval ID of countdown timer
-	gameInProgress = false;
+	gameInProgress = false,
+	score = {};
 
 /**************************************************
 	HELPER FUNCTIONS
@@ -35,6 +36,11 @@ function startGame() {
 	_.each(_.keys(inactivePlayers), function(inactivePlayer) {
 		io.sockets.socket(inactivePlayer).emit("game in progress");
 	});
+	
+	// set the initial score to 0-0
+	score.white = 0;
+	score.black = 0;
+
 
 	// set player positions
 	_.each(_.values(players), function(thisPlayer) {
@@ -283,6 +289,14 @@ function jailRelease(data) {
 	io.sockets.emit("jail release", {team: data.team});
 }
 
+function incScore(data) {
+	var scoringTeam = data.team;
+	
+	score[scoringTeam]++;
+	
+	io.sockets.emit("increment score", {score: score});
+}
+
 // New socket connection
 function onSocketConnection(client) {
 	util.log("New player has connected: "+client.id);
@@ -330,6 +344,9 @@ function onSocketConnection(client) {
 	
 	// Listen for jail release
 	client.on("jail release", jailRelease);
+	
+	// Listen for increment score
+	client.on("increment score", incScore);
 
 }
 
