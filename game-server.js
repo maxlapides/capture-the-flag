@@ -300,7 +300,7 @@ function incScore(data) {
 	var scoringTeam = data.team;
 	score[scoringTeam]++;
 
-	if(score[scoringTeam] > 0) {
+	if(score[scoringTeam] > 2) {
 		io.sockets.emit("game over", {score: score, players: players});
 		gameInProgress = false;
 	}
