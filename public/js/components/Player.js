@@ -66,6 +66,8 @@ Crafty.c('Player', {
 
 		// move player to jail
 		thisPlayer.moveToJail();
+		
+		Crafty.audio.play("tag");
 
 		// post tag to server
 		socket.emit("tag", {id: thisPlayer.id});
@@ -222,6 +224,8 @@ Crafty.c('PlayerCharacter', {
 				player.entity.color(curr.obj._color);
 				curr.obj.color(CapColors.gray50);
 				curr.obj.captured = true;
+				
+				Crafty.audio.play("flagGet");
 
 				// post flag pick up to server
 				socket.emit("flag pick up", {team: curr.obj.team,

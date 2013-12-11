@@ -212,6 +212,9 @@ function jailRelease(data) {
 				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
 			}
 	}
+	
+	Crafty.audio.play("jailDoor");
+	Crafty.audio.play("buzz");
 }
 
 function incScore(data) {
@@ -225,6 +228,8 @@ function incScore(data) {
 	if(thisPlayer) {
 		thisPlayer.entity.color(CapColors[thisPlayer.team]);
 	}
+	
+	Crafty.audio.play("cheer");
 
 }
 
