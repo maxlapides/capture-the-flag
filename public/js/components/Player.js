@@ -13,7 +13,7 @@ Crafty.c('Player', {
 	type: "player",
 
 	team: "",
-	
+
 	jailed: false,
 
 	setTeam: function(team) {
@@ -31,7 +31,7 @@ Crafty.c('Player', {
 	},
 
 	moveToJail: function() {
-	
+
 		this.jailed = true;
 
 		if(this.team === "white") {
@@ -49,7 +49,7 @@ Crafty.c('Player', {
 
 		// get the tagged player
 		var thisPlayer = playerByEntityId(this[0]);
-		
+
 		// check to see if they were carrying the flag
 		// if so, change their color back and return the flag
 		if(thisPlayer.team === "white" && thisPlayer.entity._color !== CapColors.white) {
@@ -58,7 +58,7 @@ Crafty.c('Player', {
 			socket.emit("flag reset", {team: thisPlayer.team});
 		}
 		else if(thisPlayer.team === "black" && thisPlayer.entity._color !== CapColors.black) {
-			
+
 			thisPlayer.entity.color(CapColors.black);
 			// send to server a flag return
 			socket.emit("flag reset", {team: thisPlayer.team});
@@ -126,19 +126,15 @@ Crafty.c('PlayerCharacter', {
 
 			if(player.team === "white") {
 
-				this._speed = 0;
-				if (this._movement) {
-					this.x -= this._movement.x;
-					this.y -= this._movement.y;
-				}
-				
+				this.stopMovement();
+
 				// if the player is in their own territory but arent their own color,
 				// they must have the flag
 				// so, we have to reset that flag (which belongs to the other team)
 				// and reset the players color (and increase the score)
 				if(player.entity._color !== CapColors.white) {
 					_.each(flags, function(curr) {
-					
+
 						if(curr.team === "black") {
 							socket.emit("flag reset", {team: curr.team});
 							player.entity.color(CapColors.white);
@@ -147,21 +143,17 @@ Crafty.c('PlayerCharacter', {
 					});
 				}
 			}
+
 		}
 		else {
 
 			if(player.team === "black") {
-
-				this._speed = 0;
-				if (this._movement) {
-					this.x -= this._movement.x;
-					this.y -= this._movement.y;
-				}
+				this.stopMovement();
 			}
-			
+
 			if(player.entity._color !== CapColors.black) {
 				_.each(flags, function(curr) {
-				
+
 					if(curr.team === "white") {
 						socket.emit("flag reset", {team: curr.team});
 						player.entity.color(CapColors.black);
@@ -232,12 +224,12 @@ Crafty.c('PlayerCharacter', {
 		});
 
 	},
-	
+
 	jailRelease: function(data) {
-		
+
 		if(player.entity.jailed === false) {
 			_.each(data, function(curr){
-			
+
 				if(curr.obj.team !== player.team) {
 					socket.emit("jail release", {team: player.team});
 				}
