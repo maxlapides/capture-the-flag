@@ -145,6 +145,23 @@ function onTag(data) {
 
 		taggedPlayer.entity.color(CapColors.black);
 	}
+	
+	if($('#free-teammates li').length === 0) {
+		
+		var jailFullCounter = 10;
+		
+		var jailFull = setInterval(function() {
+			
+			if(jailFullCounter === 0) {
+				clearInterval(jailFull);
+				socket.emit("jail release", {team: taggedPlayer.team});
+				return;
+			}
+			
+			jailFullCounter--;
+			
+		}, 1000);
+	}
 
 }
 

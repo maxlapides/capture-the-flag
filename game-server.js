@@ -45,12 +45,12 @@ function startGame() {
 	_.each(_.values(players), function(thisPlayer) {
 
 		if(thisPlayer.team === "white") {
-			thisPlayer.x = Math.random()*5 + 15;
-			thisPlayer.y = Math.random()*15 + 15;
+			thisPlayer.x = 17;
+			thisPlayer.y = Math.floor(Math.random()*30 + 5);
 		}
 		else {
-			thisPlayer.x = Math.random()*5 + 139;
-			thisPlayer.y = Math.random()*15 + 15;
+			thisPlayer.x = 152;
+			thisPlayer.y = Math.floor(Math.random()*30 + 5);
 		}
 
 		io.sockets.emit("init player", {id:thisPlayer.id, x: thisPlayer.x, y: thisPlayer.y});
