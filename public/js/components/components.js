@@ -79,13 +79,13 @@ Crafty.c('Obstacle', {
 });
 
 Crafty.c('JailWall', {
-	
+
 	init: function() {
 		this.requires('Obstacle');
 	},
-	
+
 	team: "",
-	
+
 	setTeam: function(theTeam) {
 		this.team = theTeam;
 	}
@@ -124,7 +124,7 @@ Crafty.c('Flag', {
 				z: 1
 			});
 	},
-	
+
 	type: "flag",
 	team: "",
 	id: 0,
@@ -132,9 +132,9 @@ Crafty.c('Flag', {
 	captured: false,
 
 	setColor: function(team) {
-	
+
 		this.team = team;
-	
+
 		if(team === "white") {
 			this.color(CapColors.pink);
 			this.id = 0;
@@ -143,30 +143,31 @@ Crafty.c('Flag', {
 			this.color(CapColors.aqua);
 			this.id = 1;
 		}
-		
+
 		flags[this.id] = this;
 
 		return this;
 	},
-	
+
 	flagPickUp: function(pickUpTeam) {
-		
+
 		if(this.team === pickUpTeam) {
 			this.color(CapColors.gray50);
 			this.captured = true;
 		}
 	},
-	
+
 	flagReset: function(resetTeam) {
 
-			if(this.team === resetTeam && this.team === "white") {
-				this.color(CapColors.pink);
-				this.captured = false;
-			}
-			else if(this.team === resetTeam && this.team === "black") {
-				this.color(CapColors.aqua);
-				this.captured = false;
-			}
+		if(this.team === resetTeam && this.team === "white") {
+			this.color(CapColors.pink);
+			this.captured = false;
+		}
+		else if(this.team === resetTeam && this.team === "black") {
+			this.color(CapColors.aqua);
+			this.captured = false;
+		}
+
 	}
 
 });

@@ -225,3 +225,31 @@ li {
 	}
 
 }
+
+#scorecard {
+	padding: 10px;
+	top: 350px;
+	height: auto;
+	font-size: 9px;
+	text-align: center;
+
+	h2 {
+		padding-bottom: 5px;
+	}
+
+	h3 {
+		margin: 0 0 20px;
+
+		span {
+			margin: 0 20px;
+		}
+
+	}
+
+	th {
+		font-size: 8px;
+		padding-bottom: 5px;
+		border-bottom: solid 1px black;
+	}
+
+}

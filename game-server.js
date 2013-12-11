@@ -53,7 +53,7 @@ function startGame() {
 			thisPlayer.y = Math.floor(Math.random()*30 + 5);
 		}
 		else {
-			thisPlayer.x = 152;
+			thisPlayer.x = 142;
 			thisPlayer.y = Math.floor(Math.random()*30 + 5);
 		}
 
@@ -156,6 +156,12 @@ function updateWaitingMessage() {
 **************************************************/
 
 function flagReset(data) {
+
+	// increment this player's flag releases
+	var player = players[this.id];
+	if(player) {
+		players[this.id].flagReturns++;
+	}
 
 	// notify all other clients that flag reset occurred
 	io.sockets.emit("flag reset", {team: data.team});
@@ -282,6 +288,7 @@ function flagPickUp(data) {
 }
 
 function jailRelease(data) {
+	players[this.id].jailReleases++;
 	io.sockets.emit("jail release", {team: data.team});
 }
 
@@ -294,7 +301,7 @@ function incScore(data) {
 	score[scoringTeam]++;
 
 	if(score[scoringTeam] > 0) {
-		io.sockets.emit("game over", {score: score});
+		io.sockets.emit("game over", {score: score, players: players});
 		gameInProgress = false;
 	}
 	else {
