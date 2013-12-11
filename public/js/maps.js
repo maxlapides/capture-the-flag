@@ -349,72 +349,13 @@ var Maps = {
 		
 		// creating Obstacles
 
-		// white barrier
+		// 
 		Crafty.e('Obstacle').at(34, 11).setSize(2, 18);
-		// black barrier
-		Crafty.e('Obstacle').at(124, 11).setSize(2, 18);
-
+		
 		// creating Hiding Zones
 
-		// white pyramid zones
-		// 1 layer
+		// 
 		Crafty.e('HidingZone').at(40, 19).setSize(2, 2);
-		// 2 layer
-		Crafty.e('HidingZone').at(47, 15).setSize(2, 2);
-		Crafty.e('HidingZone').at(47, 23).setSize(2, 2);
-		// 3 layer
-		Crafty.e('HidingZone').at(54, 11).setSize(2, 2);
-		Crafty.e('HidingZone').at(54, 19).setSize(2, 2);
-		Crafty.e('HidingZone').at(54, 27).setSize(2, 2);
-		// 4 layer
-		Crafty.e('HidingZone').at(61, 7).setSize(2, 2);
-		Crafty.e('HidingZone').at(61, 15).setSize(2, 2);
-		Crafty.e('HidingZone').at(61, 23).setSize(2, 2);
-		Crafty.e('HidingZone').at(61, 31).setSize(2, 2);
-		// 5 layer
-		Crafty.e('HidingZone').at(68, 3).setSize(2, 2);
-		Crafty.e('HidingZone').at(68, 11).setSize(2, 2);
-		Crafty.e('HidingZone').at(68, 19).setSize(2, 2);
-		Crafty.e('HidingZone').at(68, 27).setSize(2, 2);
-		Crafty.e('HidingZone').at(68, 35).setSize(2, 2);
-		// black pyramid zones
-		// 1 layer
-		Crafty.e('HidingZone').at(118, 19).setSize(2, 2);
-		// 2 layer
-		Crafty.e('HidingZone').at(111, 15).setSize(2, 2);
-		Crafty.e('HidingZone').at(111, 23).setSize(2, 2);
-		// 3 layer
-		Crafty.e('HidingZone').at(104, 11).setSize(2, 2);
-		Crafty.e('HidingZone').at(104, 19).setSize(2, 2);
-		Crafty.e('HidingZone').at(104, 27).setSize(2, 2);
-		// 4 layer
-		Crafty.e('HidingZone').at(97, 7).setSize(2, 2);
-		Crafty.e('HidingZone').at(97, 15).setSize(2, 2);
-		Crafty.e('HidingZone').at(97, 23).setSize(2, 2);
-		Crafty.e('HidingZone').at(97, 31).setSize(2, 2);
-		// 5 layer
-		Crafty.e('HidingZone').at(90, 3).setSize(2, 2);
-		Crafty.e('HidingZone').at(90, 11).setSize(2, 2);
-		Crafty.e('HidingZone').at(90, 19).setSize(2, 2);
-		Crafty.e('HidingZone').at(90, 27).setSize(2, 2);
-		Crafty.e('HidingZone').at(90, 35).setSize(2, 2);
-		// white top corner
-		Crafty.e('HidingZone').at(3, 3).setSize(2, 2);
-		Crafty.e('HidingZone').at(8, 3).setSize(2, 2);
-		Crafty.e('HidingZone').at(3, 8).setSize(2, 2);
-		// white bottom corner
-		Crafty.e('HidingZone').at(3, 35).setSize(2, 2);
-		Crafty.e('HidingZone').at(8, 35).setSize(2, 2);
-		Crafty.e('HidingZone').at(3, 30).setSize(2, 2);
-		// black top corner
-		Crafty.e('HidingZone').at(155, 3).setSize(2, 2);
-		Crafty.e('HidingZone').at(150, 3).setSize(2, 2);
-		Crafty.e('HidingZone').at(155, 8).setSize(2, 2);
-		// black bottom corner
-		Crafty.e('HidingZone').at(155, 35).setSize(2, 2);
-		Crafty.e('HidingZone').at(150, 35).setSize(2, 2);
-		Crafty.e('HidingZone').at(155, 30).setSize(2, 2);
-
 
 		// creating Safe Zones
 

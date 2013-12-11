@@ -3,7 +3,7 @@
 //@codekit-prepend 'settings.js', colors.js', 'sounds.js', 'Player.js', 'maps.js', 'eventHandlers.js'
 //@codekit-append 'components/components.js', 'scenes.js'
 
-var mapDesignMode = false;
+var mapDesignMode = true;
 
 Game = {
 
