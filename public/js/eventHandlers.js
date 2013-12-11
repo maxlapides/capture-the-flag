@@ -1,4 +1,4 @@
-/* global Game:true, Crafty, io, Player, player, remotePlayers, CapColors, _ */
+/* global Game:true, Crafty, io, Player, player, remotePlayers, CapColors, _, Maps */
 
 var socket;
 var flags = [];
@@ -100,6 +100,30 @@ function onStartGame(data) {
 	Crafty.scene('Game');
 }
 
+function onSetMap(data) {
+	var map = "map" + data.map;
+	Maps[map]();
+}
+
+function onInitPlayer(data) {
+
+	var initPlayer;
+
+	// player character (that's you!)
+	if(data.id === player.id) {
+		player.entity = Crafty.e('PlayerCharacter').at(data.x, data.y).setTeam(player.team);
+		initPlayer = player;
+		Crafty.viewport.follow(player.entity, 20, 20);
+	}
+
+	// the other players
+	else {
+		initPlayer = remotePlayers[data.id];
+		initPlayer.entity = Crafty.e('Player').at(data.x, data.y).setTeam(initPlayer.team);
+	}
+
+}
+
 function onGameInProgress(data) {
 	Crafty.scene('GameInProgress');
 }
@@ -145,21 +169,21 @@ function onTag(data) {
 
 		taggedPlayer.entity.color(CapColors.black);
 	}
-	
+
 	if($('#free-teammates li').length === 0) {
-		
+
 		var jailFullCounter = 10;
-		
+
 		var jailFull = setInterval(function() {
-			
+
 			if(jailFullCounter === 0) {
 				clearInterval(jailFull);
 				socket.emit("jail release", {team: taggedPlayer.team});
 				return;
 			}
-			
+
 			jailFullCounter--;
-			
+
 		}, 1000);
 	}
 
@@ -233,12 +257,25 @@ function incScore(data) {
 
 }
 
-function gameOver(data) {
+function sortPlayers(player1, player2) {
 
-	/*
+	if(player1.username < player2.username) {
+		return -1;
+	}
+
+	if(player1.username > player2.username) {
+		return 1;
+	}
+
+	return 0;
+
+}
+
+function gameOver(data) {
 
 	// get the final score
 	var score = data.score;
+	var playerStats = data.players;
 
 	// get the winning team
 	var winningTeam;
@@ -254,11 +291,64 @@ function gameOver(data) {
 	// show the score card below the waiting room
 	$('#scorecard').html("").show();
 
-	// generate the score card
-	$('#scorecard').append('<h2>' + ((player.team === winningTeam) ? "Victory!" : "Defeat.") + '</h2>');
-	$('#scorecard').append('<h3><span>Black: ' + score.black + '</span><span>White: ' + score.white + '</span></h3>');
+	// separate players into teams
+	var blackStats = [], whiteStats = [];
+	_.each(_.values(playerStats), function(stats) {
+		if(stats.team === "black") {
+			blackStats.push(stats);
+		}
+		else {
+			whiteStats.push(stats);
+		}
+	});
 
-	*/
+	// sort players
+	blackStats = blackStats.sort(sortPlayers);
+	whiteStats = whiteStats.sort(sortPlayers);
+
+	var allStats;
+	if(player.team === "black") {
+		allStats = blackStats.concat(whiteStats);
+	}
+	else {
+		allStats = whiteStats.concat(blackStats);
+	}
+
+	// generate the score card
+
+	var scoreCard = "";
+
+	scoreCard += '<h2>' + ((player.team === winningTeam) ? "Victory!" : "Defeat.") + '</h2>';
+	scoreCard += '<h3><span>Black: ' + score.black + '</span><span>White: ' + score.white + '</span></h3>';
+
+	scoreCard += "<table>";
+
+	// header row
+	scoreCard += "<tr>";
+	scoreCard += "<th>Username</th>";
+	scoreCard += "<th>Team</th>";
+	scoreCard += "<th>Tags</th>";
+	scoreCard += "<th>Times Tagged</th>";
+	scoreCard += "<th>Flag Captures</th>";
+	scoreCard += "<th>Flag Returns</th>";
+	scoreCard += "<th>Jail Releases</th>";
+	scoreCard += "</tr>";
+
+	_.each(allStats, function(stats) {
+		scoreCard += "<tr>";
+		scoreCard += "<td>" + stats.username + "</td>";
+		scoreCard += "<td>" + stats.team + "</td>";
+		scoreCard += "<td>" + stats.tags + "</td>";
+		scoreCard += "<td>" + stats.timesTagged + "</td>";
+		scoreCard += "<td>" + stats.flagCaps + "</td>";
+		scoreCard += "<td>" + stats.flagReturns + "</td>";
+		scoreCard += "<td>" + stats.jailReleases + "</td>";
+		scoreCard += "</tr>";
+	});
+
+	scoreCard += "</table>";
+
+	$('#scorecard').html(scoreCard);
 
 }
 
@@ -287,6 +377,12 @@ function setEventHandlers() {
 
 	// Game start!
 	socket.on("start game", onStartGame);
+
+	// Set map
+	socket.on("set map", onSetMap);
+
+	// Initialize player
+	socket.on("init player", onInitPlayer);
 
 	// Game in progress
 	socket.on("game in progress", onGameInProgress);

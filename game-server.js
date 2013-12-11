@@ -18,7 +18,8 @@ var inactivePlayers,			// Array of connected players
 	playersCount,				// Number of connected players
 	countdown,					// Interval ID of countdown timer
 	gameInProgress = false,
-	score = {};
+	score = {},
+	numMaps = 4;				// Number of available maps
 
 /**************************************************
 	HELPER FUNCTIONS
@@ -41,6 +42,9 @@ function startGame() {
 	score.white = 0;
 	score.black = 0;
 
+	var randMap = Math.floor(Math.random() * numMaps) + 1;
+	io.sockets.emit("set map", {map: randMap});
+
 	// set player positions
 	_.each(_.values(players), function(thisPlayer) {
 
@@ -49,11 +53,12 @@ function startGame() {
 			thisPlayer.y = Math.floor(Math.random()*30 + 5);
 		}
 		else {
-			thisPlayer.x = 152;
+			thisPlayer.x = 142;
 			thisPlayer.y = Math.floor(Math.random()*30 + 5);
 		}
 
 		io.sockets.emit("init player", {id:thisPlayer.id, x: thisPlayer.x, y: thisPlayer.y});
+
 	});
 
 }
@@ -151,6 +156,12 @@ function updateWaitingMessage() {
 **************************************************/
 
 function flagReset(data) {
+
+	// increment this player's flag releases
+	var player = players[this.id];
+	if(player) {
+		players[this.id].flagReturns++;
+	}
 
 	// notify all other clients that flag reset occurred
 	io.sockets.emit("flag reset", {team: data.team});
@@ -262,7 +273,7 @@ function onTag(data) {
 
 	// increment tag counts
 	tagger.tags++;
-	taggedPlayer.numTimesTagged++;
+	taggedPlayer.timesTagged++;
 
 	// notify all other clients that the tag occurred
 	this.broadcast.emit("tag", {id: taggedPlayer.id});
@@ -277,16 +288,20 @@ function flagPickUp(data) {
 }
 
 function jailRelease(data) {
+	players[this.id].jailReleases++;
 	io.sockets.emit("jail release", {team: data.team});
 }
 
 function incScore(data) {
 
+	// increment this player's flag captures
+	players[data.id].flagCaps++;
+
 	var scoringTeam = data.team;
 	score[scoringTeam]++;
 
 	if(score[scoringTeam] > 0) {
-		io.sockets.emit("game over", {score: score});
+		io.sockets.emit("game over", {score: score, players: players});
 		gameInProgress = false;
 	}
 	else {
@@ -387,4 +402,5 @@ function init() {
 /**************************************************
 	RUN THE GAME
 **************************************************/
+
 init();
