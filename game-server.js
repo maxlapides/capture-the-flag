@@ -145,6 +145,30 @@ function updateWaitingMessage() {
 	GAME EVENT HANDLERS
 **************************************************/
 
+function flagReset(data) {
+
+	var teamReset;
+
+	// tagged player is carrying opposite teams flag, so we switch team here
+	if(data.team === "white") {
+		teamReset = "black";
+	}
+	else {
+		teamReset = "white";
+	}
+
+	// notify all other clients that flag reset occurred
+	io.sockets.emit("flag reset", {team: teamReset});
+
+	// set all players on the reset team to no longer be carrying the flag
+	_.each(_.values(players), function(thisPlayer) {
+		if(thisPlayer.team === teamReset) {
+			thisPlayer.carryingFlag = false;
+		}
+	});
+
+}
+
 // Socket client has disconnected
 function onClientDisconnect() {
 	util.log("Player has disconnected: "+this.id);
@@ -155,6 +179,11 @@ function onClientDisconnect() {
 	if (!removePlayer) {
 		util.log("Player not found: "+this.id);
 		return;
+	}
+
+	// Reset the flag if the player was carrying the flag
+	if(removePlayer.carryingFlag) {
+		flagReset(removePlayer.team);
 	}
 
 	// Remove player from players array
@@ -245,26 +274,8 @@ function onTag(data) {
 
 }
 
-function flagReset(data) {
-
-	var teamReset;
-
-	// tagged player is carrying opposite teams flag, so we switch team here
-	if(data.team === "white") {
-	
-		teamReset = "black";
-	}
-	else {
-		
-		teamReset = "white";
-	}
-
-	// notify all other clients that flag reset occured
-	io.sockets.emit("flag reset", {team: teamReset});
-
-}
-
 function flagPickUp(data) {
+	players[data.id].carryingFlag = true;
 	this.broadcast.emit("flag pick up", {team: data.team, id: data.id, color: data.color});
 }
 
