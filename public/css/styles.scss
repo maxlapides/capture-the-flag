@@ -1,18 +1,41 @@
 @import "bourbon";
 @import "normalize";
 
+@font-face {
+    font-family: 'gamegirl';
+    src: url('../fonts/gamegirl-webfont.eot');
+    src: url('../fonts/gamegirl-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/gamegirl-webfont.woff') format('woff'),
+         url('../fonts/gamegirl-webfont.ttf') format('truetype'),
+         url('../fonts/gamegirl-webfont.svg#../fonts/gamegirl_classicregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
 	@include box-sizing(border-box);
 }
 
 body {
 	padding: 20px;
-	font-family: $monospace;
+	font-family: 'gamegirl', 'Monaco', 'Courier', 'sans-serif';
 	font-size: 11px;
+}
+
+button, input[type=submit] {
+	background: #cbcbcb;
+}
+
+p {
+	padding: 0 10px;
 }
 
 div {
 	margin: 0 auto;
+}
+
+hr {
+	border-top: solid 1px black;
 }
 
 .custom-scene {
@@ -30,11 +53,32 @@ div {
 input {
 	display: block;
 	width: 200px;
-	margin: 0 auto;
+	border: solid 1px black;
+	margin: 0 auto 2px;
+	padding: 5px;
+
+	&:focus {
+		outline: 0;
+	}
+
+}
+
+h1, h2, h3 {
+	text-align: center;
 }
 
 h1 {
-	text-align: center;
+	margin-bottom: 5px;
+}
+
+h2 {
+	font-size: 14px;
+	padding-bottom: 10px;
+	margin: 0;
+}
+
+h3 {
+	font-size: 14px;
 }
 
 .team {
