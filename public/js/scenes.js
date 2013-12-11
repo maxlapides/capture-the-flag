@@ -88,38 +88,8 @@ Crafty.scene('Game', function() {
 	});
 	player.free();
 
-	// choose a random map
-	if(mapDesignMode) {
-		Maps.map1();
-	}
-	else {
-		var mapNames = _.keys(Maps);
-		var map = mapNames[Math.floor(Math.random() * mapNames.length)];
-		Maps[map]();
-	}
-
-	// initialize player positions
-	var initPlayer;
-	socket.on("init player", function(data) {
-
-		// player character (that's you!)
-		if(data.id === player.id) {
-			player.entity = Crafty.e('PlayerCharacter')
-									.at(data.x, data.y)
-									.setTeam(player.team);
-			initPlayer = player;
-			Crafty.viewport.follow(player.entity, 20, 20);
-		}
-
-		// the other players
-		else {
-			initPlayer = remotePlayers[data.id];
-			initPlayer.entity = Crafty.e('Player')
-										.at(data.x, data.y)
-										.setTeam(initPlayer.team);
-		}
-
-	});
+	// set map for map design mode
+	if(mapDesignMode) { Maps.map1(); }
 
 	// chat message submitted
 	$('form#chatForm').submit(function(e) {

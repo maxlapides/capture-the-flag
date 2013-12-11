@@ -18,7 +18,8 @@ var inactivePlayers,			// Array of connected players
 	playersCount,				// Number of connected players
 	countdown,					// Interval ID of countdown timer
 	gameInProgress = false,
-	score = {};
+	score = {},
+	numMaps = 4;				// Number of available maps
 
 /**************************************************
 	HELPER FUNCTIONS
@@ -41,6 +42,9 @@ function startGame() {
 	score.white = 0;
 	score.black = 0;
 
+	var randMap = Math.floor(Math.random() * numMaps) + 1;
+	io.sockets.emit("set map", {map: randMap});
+
 	// set player positions
 	_.each(_.values(players), function(thisPlayer) {
 
@@ -54,6 +58,7 @@ function startGame() {
 		}
 
 		io.sockets.emit("init player", {id:thisPlayer.id, x: thisPlayer.x, y: thisPlayer.y});
+
 	});
 
 }
@@ -262,7 +267,7 @@ function onTag(data) {
 
 	// increment tag counts
 	tagger.tags++;
-	taggedPlayer.numTimesTagged++;
+	taggedPlayer.timesTagged++;
 
 	// notify all other clients that the tag occurred
 	this.broadcast.emit("tag", {id: taggedPlayer.id});
@@ -281,6 +286,9 @@ function jailRelease(data) {
 }
 
 function incScore(data) {
+
+	// increment this player's flag captures
+	players[data.id].flagCaps++;
 
 	var scoringTeam = data.team;
 	score[scoringTeam]++;
@@ -387,4 +395,5 @@ function init() {
 /**************************************************
 	RUN THE GAME
 **************************************************/
+
 init();

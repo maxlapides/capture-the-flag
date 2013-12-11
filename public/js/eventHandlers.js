@@ -1,4 +1,4 @@
-/* global Game:true, Crafty, io, Player, player, remotePlayers, CapColors, _ */
+/* global Game:true, Crafty, io, Player, player, remotePlayers, CapColors, _, Maps */
 
 var socket;
 var flags = [];
@@ -98,6 +98,30 @@ function onWaitingMessage(data) {
 function onStartGame(data) {
 	console.log("Starting game!");
 	Crafty.scene('Game');
+}
+
+function onSetMap(data) {
+	var map = "map" + data.map;
+	Maps[map]();
+}
+
+function onInitPlayer(data) {
+
+	var initPlayer;
+
+	// player character (that's you!)
+	if(data.id === player.id) {
+		player.entity = Crafty.e('PlayerCharacter').at(data.x, data.y).setTeam(player.team);
+		initPlayer = player;
+		Crafty.viewport.follow(player.entity, 20, 20);
+	}
+
+	// the other players
+	else {
+		initPlayer = remotePlayers[data.id];
+		initPlayer.entity = Crafty.e('Player').at(data.x, data.y).setTeam(initPlayer.team);
+	}
+
 }
 
 function onGameInProgress(data) {
@@ -282,6 +306,12 @@ function setEventHandlers() {
 
 	// Game start!
 	socket.on("start game", onStartGame);
+
+	// Set map
+	socket.on("set map", onSetMap);
+
+	// Initialize player
+	socket.on("init player", onInitPlayer);
 
 	// Game in progress
 	socket.on("game in progress", onGameInProgress);

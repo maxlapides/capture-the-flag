@@ -7,7 +7,8 @@ var Player = function(id, username) {
 	this.carryingFlag = false;
 
 	this.tags = 0;
-	this.numTimesTagged = 0;
+	this.timesTagged = 0;
+	this.flagCaps = 0;
 
 };
 
