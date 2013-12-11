@@ -124,6 +124,7 @@ function onTag(data) {
 
 	// move the tagged player to jail
 	taggedPlayer.moveToJail();
+	taggedPlayer.entity.jailed = true;
 	
 	if(taggedPlayer.team === "white" && taggedPlayer.entity._color !== CapColors.white) {
 	
@@ -152,6 +153,37 @@ function flagPickUp(data) {
 	});
 
 	remotePlayers[data.id].entity.color(data.color);
+}
+
+function jailRelease(data) {
+	
+	// search through all players and release any "jailed" players on your team
+	_.each(remotePlayers, function(curr) {
+		
+		if(curr.team === data.team && curr.entity.jailed === true) {
+			curr.entity.jailed = false;
+			if(curr.team === "white") {
+				curr.entity.x = (Math.random()*5 + 15) * Game.map_grid.tile.width;
+				curr.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
+			}
+			else {
+				curr.entity.x = (Math.random()*5 + 139) * Game.map_grid.tile.width;
+				curr.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
+			}
+		}
+	});
+	
+	// also check yo self before you wreck yo self
+	if(player.team === data.team && player.entity.jailed === true) {
+		if(player.team === "white") {
+				player.entity.x = (Math.random()*5 + 15) * Game.map_grid.tile.width;
+				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
+			}
+			else {
+				player.entity.x = (Math.random()*5 + 139) * Game.map_grid.tile.width;
+				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
+			}
+	}
 }
 
 function setEventHandlers() {
@@ -197,5 +229,8 @@ function setEventHandlers() {
 
 	// Flag pick up
 	socket.on("flag pick up", flagPickUp);
+	
+	// Jail release
+	socket.on("jail release", jailRelease);
 
 }

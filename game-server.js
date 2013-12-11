@@ -268,6 +268,10 @@ function flagPickUp(data) {
 	this.broadcast.emit("flag pick up", {team: data.team, id: data.id, color: data.color});
 }
 
+function jailRelease(data) {
+	io.sockets.emit("jail release", {team: data.team});
+}
+
 // New socket connection
 function onSocketConnection(client) {
 	util.log("New player has connected: "+client.id);
@@ -312,6 +316,9 @@ function onSocketConnection(client) {
 
 	// Listen for flag pick up
 	client.on("flag pick up", flagPickUp);
+	
+	// Listen for jail release
+	client.on("jail release", jailRelease);
 
 }
 

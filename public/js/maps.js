@@ -72,11 +72,11 @@ var Maps = {
 		// creating Jails
 		
 		// White
-		Crafty.e('JailWall').at(1, 29).setSize(10, 1);
-		Crafty.e('JailWall').at(10, 29).setSize(1, 10);
+		Crafty.e('JailWall').at(1, 29).setSize(10, 1).setTeam("white");
+		Crafty.e('JailWall').at(10, 29).setSize(1, 10).setTeam("white");
 		// Black
-		Crafty.e('JailWall').at(149, 1).setSize(1, 10);
-		Crafty.e('JailWall').at(149, 10).setSize(10, 1);
+		Crafty.e('JailWall').at(149, 1).setSize(1, 10).setTeam("black");
+		Crafty.e('JailWall').at(149, 10).setSize(10, 1).setTeam("black");
 
 		// set jail positions
 		whiteJailPos = {x: 5, y: 35};

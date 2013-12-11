@@ -13,6 +13,8 @@ Crafty.c('Player', {
 	type: "player",
 
 	team: "",
+	
+	jailed: false,
 
 	setTeam: function(team) {
 
@@ -29,6 +31,8 @@ Crafty.c('Player', {
 	},
 
 	moveToJail: function() {
+	
+		this.jailed = true;
 
 		if(this.team === "white") {
 			this.x = blackJailPos.x * Game.map_grid.tile.width;
@@ -93,6 +97,7 @@ Crafty.c('PlayerCharacter', {
 	},
 
 	pcCollisions: function() {
+		this.onHit('JailWall', this.jailRelease);
 		this.onHit('Solid', this.stopMovement);
 		this.onHit('Player', this.detectTag);
 		this.onHit('Semisolid', this.stopMovementSemi);
@@ -195,17 +200,24 @@ Crafty.c('PlayerCharacter', {
 				socket.emit("flag pick up", {team: curr.obj.team,
 												id: player.id,
 												color: player.entity._color});
-				
 
 			}
 
 		});
 
 	},
-
-	/*jailRelease: function() {
-
-	},*/
+	
+	jailRelease: function(data) {
+		
+		if(player.entity.jailed === false) {
+			_.each(data, function(curr){
+			
+				if(curr.obj.team !== player.team) {
+					socket.emit("jail release", {team: player.team});
+				}
+			});
+		}
+	},
 
 	disableOnChat: function() {
 
