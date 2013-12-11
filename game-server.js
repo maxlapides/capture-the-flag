@@ -25,6 +25,10 @@ var inactivePlayers,			// Array of connected players
 	HELPER FUNCTIONS
 **************************************************/
 
+function clearCountdown() {
+	clearInterval(countdown);
+}
+
 function startGame() {
 
 	// it should theoretically never hit this case
@@ -79,7 +83,7 @@ function updateWaitingMessage() {
 		});
 
 		if(waitingOnPlayers > 0) {
-			clearInterval(countdown);
+			clearCountdown();
 			waitingMsg = "Waiting for " + waitingOnPlayers + " player" + (waitingOnPlayers > 1 ? "s" : "") + " to select a team...";
 			io.sockets.emit("waiting msg", waitingMsg);
 			return;
@@ -106,7 +110,7 @@ function updateWaitingMessage() {
 		});
 	}
 
-	if(initiateCountdown) {
+	if(initiateCountdown && !gameInProgress) {
 
 		util.log("Countdown initiated.");
 
@@ -118,13 +122,13 @@ function updateWaitingMessage() {
 			// but better safe than sorry.
 			if(gameInProgress) {
 				util.log("Trying to start the game again!?");
-				clearInterval(countdown);
+				clearCountdown();
 				return;
 			}
 
 			// stop countdown after 30 seconds
 			if(countdownCounter === 0) {
-				clearInterval(countdown);
+				clearCountdown();
 				util.log("Starting the game!");
 				io.sockets.emit("start game");
 				startGame();
@@ -143,7 +147,7 @@ function updateWaitingMessage() {
 	}
 
 	else {
-		clearInterval(countdown);
+		clearCountdown();
 		waitingMsg = "Waiting for more players...";
 		io.sockets.emit("waiting msg", waitingMsg);
 	}
@@ -301,7 +305,7 @@ function incScore(data) {
 	score[scoringTeam]++;
 
 	// if the game is over
-	if(score[scoringTeam] > 2) {
+	if(score[scoringTeam] > 0) {
 
 		// tell players the game has ended
 		io.sockets.emit("game over", {score: score, players: players});
