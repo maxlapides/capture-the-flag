@@ -178,7 +178,7 @@ function onTag(data) {
 
 			if(jailFullCounter === 0) {
 				clearInterval(jailFull);
-				socket.emit("jail release", {team: taggedPlayer.team});
+				socket.emit("jail release", {team: taggedPlayer.team, auto: true});
 				return;
 			}
 
@@ -231,7 +231,9 @@ function jailRelease(data) {
 	
 		player.entity.jailed = false;
 		player.free();
-		
+		if(!data.auto) {
+			socket.emit("inc jail release", {id: data.id});
+		}
 		if(player.team === "white") {
 				player.entity.x = (Math.random()*5 + 15) * Game.map_grid.tile.width;
 				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;

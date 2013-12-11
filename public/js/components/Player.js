@@ -244,7 +244,7 @@ Crafty.c('PlayerCharacter', {
 		if(player.entity.jailed === false) {
 			_.each(data, function(curr){
 				if(curr.obj.team !== player.team) {
-					socket.emit("jail release", {team: player.team});
+					socket.emit("jail release", {team: player.team, auto: false});
 				}
 			});
 		}

@@ -288,8 +288,7 @@ function flagPickUp(data) {
 }
 
 function jailRelease(data) {
-	players[this.id].jailReleases++;
-	io.sockets.emit("jail release", {team: data.team});
+	io.sockets.emit("jail release", {team: data.team, id: this.id, auto: data.auto});
 }
 
 function incScore(data) {
@@ -312,6 +311,10 @@ function incScore(data) {
 		io.sockets.emit("increment score", {score: score, id: data.id});
 	}
 
+}
+
+function incJailRelease(data) {
+	players[data.id].jailReleases++;
 }
 
 // New socket connection
@@ -364,6 +367,9 @@ function onSocketConnection(client) {
 
 	// Listen for increment score
 	client.on("increment score", incScore);
+	
+	// Listen for inc jail release
+	client.on("inc jail release", incJailRelease);
 
 }
 
