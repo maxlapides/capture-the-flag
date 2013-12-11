@@ -297,11 +297,17 @@ function incScore(data) {
 	// increment this player's flag captures
 	players[data.id].flagCaps++;
 
+	// increment the appropriate team's score
 	var scoringTeam = data.team;
 	score[scoringTeam]++;
 
-	if(score[scoringTeam] > 0) {
+	// if the game is over
+	if(score[scoringTeam] > 2) {
+
+		// tell all clients that the game has ended
 		io.sockets.emit("game over", {score: score, players: players});
+
+		// set game over
 		gameInProgress = false;
 	}
 	else {
