@@ -13,15 +13,18 @@ function onSocketDisconnect() {
 	console.log("Disconnected from socket server");
 }
 
-function addToWaitingRoom(player, cssClass) {
-	$('#waiting-room li#player-' + player.id).remove();
+function addToWaitingRoom(newPlayer) {
+
+	$('#waiting-room li#player-' + newPlayer.id).remove();
+
+	var cssClass = (newPlayer.id === player.id) ? "self" : "";
 
 	var listItem = "";
-	listItem += '<li id="player-' + player.id + '"' + (cssClass ? ' class="'+cssClass+'"' : "") + '>';
-	listItem += player.username;
+	listItem += '<li id="player-' + newPlayer.id + '"' + (cssClass ? ' class="'+cssClass+'"' : "") + '>';
+	listItem += newPlayer.username;
 	listItem += '</li>';
 
-	$('#waiting-room ul#team-'+player.team).append(listItem);
+	$('#waiting-room ul#team-'+newPlayer.team).append(listItem);
 }
 
 // New player
@@ -164,10 +167,10 @@ function flagPickUp(data) {
 }
 
 function jailRelease(data) {
-	
+
 	// search through all players and release any "jailed" players on your team
 	_.each(remotePlayers, function(curr) {
-		
+
 		if(curr.team === data.team && curr.entity.jailed === true) {
 			curr.entity.jailed = false;
 			if(curr.team === "white") {
@@ -180,7 +183,7 @@ function jailRelease(data) {
 			}
 		}
 	});
-	
+
 	// also check yo self before you wreck yo self
 	if(player.team === data.team && player.entity.jailed === true) {
 		if(player.team === "white") {
@@ -237,7 +240,7 @@ function setEventHandlers() {
 
 	// Flag pick up
 	socket.on("flag pick up", flagPickUp);
-	
+
 	// Jail release
 	socket.on("jail release", jailRelease);
 
