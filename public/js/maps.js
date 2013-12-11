@@ -6,16 +6,16 @@ var blackJailPos = {};
 var Maps = {
 
 	map1: function() {
-	
+
 		// creating Obstacles
 
 		// white barrier
 		Crafty.e('Obstacle').at(34, 11).setSize(2, 18);
 		// black barrier
 		Crafty.e('Obstacle').at(124, 11).setSize(2, 18);
-		
+
 		// creating Hiding Zones
-		
+
 		// white pyramid zones
 		// 1 layer
 		Crafty.e('HidingZone').at(40, 19).setSize(2, 2);
@@ -75,9 +75,9 @@ var Maps = {
 		Crafty.e('HidingZone').at(150, 35).setSize(2, 2);
 		Crafty.e('HidingZone').at(155, 30).setSize(2, 2);
 
-				
+
 		// creating Safe Zones
-		
+
 		// White Flag
 		Crafty.e('SafeZone').at(28, 17).setSize(6, 6);
 		// Black Flag
@@ -89,9 +89,9 @@ var Maps = {
 		Crafty.e('Flag').at(32, 19).setSize(2, 2).setColor("white");
 		// Black
 		Crafty.e('Flag').at(126, 19).setSize(2, 2).setColor("black");
-		
+
 		// creating Jails
-		
+
 		// White
 		Crafty.e('JailWall').at(1, 15).setSize(10, 1).setTeam("white");
 		Crafty.e('JailWall').at(10, 15).setSize(1, 10).setTeam("white");
@@ -100,7 +100,7 @@ var Maps = {
 		Crafty.e('JailWall').at(149, 15).setSize(10, 1).setTeam("black");
 		Crafty.e('JailWall').at(149, 15).setSize(1, 10).setTeam("black");
 		Crafty.e('JailWall').at(149, 25).setSize(10, 1).setTeam("black");
-		
+
 		// set jail positions
 		whiteJailPos = {x: 5, y: 10};
 		blackJailPos = {x: 154, y: 10};
@@ -108,7 +108,7 @@ var Maps = {
 
 	map2: function() {
 
-			
+
 		// creating Obstacles
 
 		// large side walls (left)
@@ -170,9 +170,9 @@ var Maps = {
 		Crafty.e('Flag').at(3, 3).setSize(1, 1).setColor("white");
 		// Black
 		Crafty.e('Flag').at(156, 36).setSize(1, 1).setColor("black");
-		
+
 		// creating Jails
-		
+
 		// White
 		Crafty.e('JailWall').at(1, 29).setSize(10, 1).setTeam("white");
 		Crafty.e('JailWall').at(10, 29).setSize(1, 10).setTeam("white");
@@ -184,9 +184,9 @@ var Maps = {
 		whiteJailPos = {x: 5, y: 35};
 		blackJailPos = {x: 155, y: 5};
 	},
-	
+
 	map3: function() {
-		
+
 		// creating Obstacles
 
 		// white side inner triple
@@ -211,9 +211,9 @@ var Maps = {
 		Crafty.e('Obstacle').at(130, 8).setSize(2, 6);
 		Crafty.e('Obstacle').at(130, 17).setSize(2, 6);
 		Crafty.e('Obstacle').at(130, 26).setSize(2, 6);
-		
+
 		// creating Hiding Zones
-		
+
 		// white side inner zones
 		Crafty.e('HidingZone').at(58, 14).setSize(2, 2);
 		Crafty.e('HidingZone').at(58, 19).setSize(2, 2);
@@ -238,9 +238,9 @@ var Maps = {
 		Crafty.e('HidingZone').at(115, 22).setSize(2, 2);
 		Crafty.e('HidingZone').at(125, 16).setSize(2, 2);
 		Crafty.e('HidingZone').at(125, 22).setSize(2, 2);
-		
+
 		// creating Safe Zones
-		
+
 		// White Flag
 		Crafty.e('SafeZone').at(9, 8).setSize(5, 5);
 		// Black Flag
@@ -252,9 +252,9 @@ var Maps = {
 		Crafty.e('Flag').at(11, 10).setSize(1, 1).setColor("white");
 		// Black
 		Crafty.e('Flag').at(148, 29).setSize(1, 1).setColor("black");
-		
+
 		// creating Jails
-		
+
 		// White
 		Crafty.e('JailWall').at(6, 25).setSize(10, 1).setTeam("white");
 		Crafty.e('JailWall').at(6, 25).setSize(1, 10).setTeam("white");
@@ -265,21 +265,21 @@ var Maps = {
 		Crafty.e('JailWall').at(153, 5).setSize(1, 10).setTeam("black");
 		Crafty.e('JailWall').at(143, 5).setSize(1, 10).setTeam("black");
 		Crafty.e('JailWall').at(143, 5).setSize(11, 1).setTeam("black");
-		
+
 		// set jail positions
 		whiteJailPos = {x: 11, y: 30};
 		blackJailPos = {x: 148, y: 10};
 	},
-	
+
 	map4: function() {
-		
+
 		// creating Obstacles
 
 		// middle rectangle
 		Crafty.e('Obstacle').at(74, 17).setSize(1, 6);
 		Crafty.e('Obstacle').at(74, 17).setSize(12, 1);
-		Crafty.e('Obstacle').at(86, 17).setSize(1, 6);
-		Crafty.e('Obstacle').at(74, 23).setSize(13, 1);
+		Crafty.e('Obstacle').at(85, 17).setSize(1, 6);
+		Crafty.e('Obstacle').at(74, 23).setSize(12, 1);
 		// top L
 		Crafty.e('Obstacle').at(56, 8).setSize(48, 1);
 		Crafty.e('Obstacle').at(56, 8).setSize(1, 13);
@@ -294,10 +294,10 @@ var Maps = {
 		Crafty.e('Obstacle').at(125, 11).setSize(1, 18);
 		Crafty.e('Obstacle').at(125, 11).setSize(12, 1);
 		Crafty.e('Obstacle').at(125, 28).setSize(12, 1);
-		
-		
+
+
 		// creating Hiding Zones
-		
+
 		// large inner zones
 		Crafty.e('HidingZone').at(59, 11).setSize(4, 4);
 		Crafty.e('HidingZone').at(97, 25).setSize(4, 4);
@@ -313,9 +313,9 @@ var Maps = {
 		// black side bottom
 		Crafty.e('HidingZone').at(127, 33).setSize(2, 2);
 		Crafty.e('HidingZone').at(133, 33).setSize(2, 2);
-		
+
 		// creating Safe Zones
-		
+
 		// White Flag
 		Crafty.e('SafeZone').at(28, 17).setSize(6, 6);
 		// Black Flag
@@ -327,9 +327,9 @@ var Maps = {
 		Crafty.e('Flag').at(32, 19).setSize(2, 2).setColor("white");
 		// Black
 		Crafty.e('Flag').at(126, 19).setSize(2, 2).setColor("black");
-		
+
 		// creating Jails
-		
+
 		// White
 		Crafty.e('JailWall').at(1, 15).setSize(10, 1).setTeam("white");
 		Crafty.e('JailWall').at(10, 15).setSize(1, 10).setTeam("white");
@@ -338,7 +338,7 @@ var Maps = {
 		Crafty.e('JailWall').at(149, 15).setSize(10, 1).setTeam("black");
 		Crafty.e('JailWall').at(149, 15).setSize(1, 10).setTeam("black");
 		Crafty.e('JailWall').at(149, 25).setSize(10, 1).setTeam("black");
-		
+
 		// set jail positions
 		whiteJailPos = {x: 5, y: 10};
 		blackJailPos = {x: 154, y: 10};

@@ -90,8 +90,15 @@ Crafty.scene('Game', function() {
 	});
 	player.free();
 
-	// set map
-	Maps.map1();
+	// choose a random map
+	if(mapDesignMode) {
+		Maps.map1();
+	}
+	else {
+		var mapNames = _.keys(Maps);
+		var map = mapNames[Math.floor(Math.random() * mapNames.length)];
+		Maps[map]();
+	}
 
 	// initialize player positions
 	var initPlayer;
