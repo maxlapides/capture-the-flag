@@ -243,7 +243,7 @@ function jailRelease(data) {
 				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
 			}
 	}
-	
+
 	Crafty.audio.play("jailDoor");
 	Crafty.audio.play("buzz");
 }
@@ -259,7 +259,7 @@ function incScore(data) {
 	if(thisPlayer) {
 		thisPlayer.entity.color(CapColors[thisPlayer.team]);
 	}
-	
+
 	Crafty.audio.play("cheer");
 
 }
@@ -297,7 +297,7 @@ function gameOver(data) {
 
 	// show the score card below the waiting room
 	$('#scorecard').html("").show();
-	
+
 	// play winning and losing sounds
 	if(player.team === winningTeam) {
 		Crafty.audio.play("win");
@@ -364,6 +364,14 @@ function gameOver(data) {
 	scoreCard += "</table>";
 
 	$('#scorecard').html(scoreCard);
+
+	// kick everyone off their teams
+	player.team = "";
+	_.each(remotePlayers, function(remotePlayer) {
+		remotePlayer.team = "";
+	});
+
+	$('#waiting-room .team li').remove();
 
 }
 

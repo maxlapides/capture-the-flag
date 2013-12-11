@@ -159,7 +159,7 @@ function flagReset(data) {
 
 	// increment this player's flag releases
 	var player = players[this.id];
-	if(player) {
+	if(player && player.team === data.team) {
 		players[this.id].flagReturns++;
 	}
 
@@ -302,10 +302,21 @@ function incScore(data) {
 
 	// if the game is over
 	if(score[scoringTeam] > 2) {
+
+		// tell players the game has ended
 		io.sockets.emit("game over", {score: score, players: players});
 
 		// set game over
 		gameInProgress = false;
+
+		// kick everyone off their teams
+		_.each(players, function(player) {
+			player.team = "";
+		});
+
+		// update the waiting message
+		updateWaitingMessage();
+
 	}
 	else {
 		io.sockets.emit("increment score", {score: score, id: data.id});
