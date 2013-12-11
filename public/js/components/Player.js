@@ -149,17 +149,17 @@ Crafty.c('PlayerCharacter', {
 
 			if(player.team === "black") {
 				this.stopMovement();
-			}
 
-			if(player.entity._color !== CapColors.black) {
-				_.each(flags, function(curr) {
+				if(player.entity._color !== CapColors.black) {
+					_.each(flags, function(curr) {
 
-					if(curr.team === "white") {
-						socket.emit("flag reset", {team: curr.team});
-						player.entity.color(CapColors.black);
-						socket.emit("increment score", {team: player.team});
-					}
-				});
+						if(curr.team === "white") {
+							socket.emit("flag reset", {team: curr.team});
+							player.entity.color(CapColors.black);
+							socket.emit("increment score", {team: player.team});
+						}
+					});
+				}
 			}
 		}
 
