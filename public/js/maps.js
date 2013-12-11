@@ -102,8 +102,8 @@ var Maps = {
 		Crafty.e('JailWall').at(149, 25).setSize(10, 1).setTeam("black");
 
 		// set jail positions
-		whiteJailPos = {x: 5, y: 10};
-		blackJailPos = {x: 154, y: 10};
+		whiteJailPos = {x: 5, y: 20};
+		blackJailPos = {x: 154, y: 20};
 	},
 
 	map2: function() {
@@ -340,8 +340,8 @@ var Maps = {
 		Crafty.e('JailWall').at(149, 25).setSize(10, 1).setTeam("black");
 
 		// set jail positions
-		whiteJailPos = {x: 5, y: 10};
-		blackJailPos = {x: 154, y: 10};
+		whiteJailPos = {x: 5, y: 20};
+		blackJailPos = {x: 154, y: 20};
 	}
 
 };

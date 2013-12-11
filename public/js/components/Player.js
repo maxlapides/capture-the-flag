@@ -55,13 +55,13 @@ Crafty.c('Player', {
 		if(thisPlayer.team === "white" && thisPlayer.entity._color !== CapColors.white) {
 			thisPlayer.entity.color(CapColors.white);
 			// send to server a flag return
-			socket.emit("flag reset", {team: thisPlayer.team});
+			socket.emit("flag reset", {team: "black"});
 		}
 		else if(thisPlayer.team === "black" && thisPlayer.entity._color !== CapColors.black) {
 
 			thisPlayer.entity.color(CapColors.black);
 			// send to server a flag return
-			socket.emit("flag reset", {team: thisPlayer.team});
+			socket.emit("flag reset", {team: "white"});
 		}
 
 		// move player to jail
@@ -176,10 +176,18 @@ Crafty.c('PlayerCharacter', {
 
 		if(this.x < Game.map_grid.width * Game.map_grid.tile.width / 2) {
 
-			if(player.team === "white") {
+			if(player.team === "white" && player.entity._color === CapColors.white) {
 				_.each(collisionData, function(curPlayer) {
 					if(playerByEntityId(curPlayer.obj[0]).team === "black") {
-						captureBool = true;
+						curPlayer.obj.tag();
+					}
+				});
+			}
+			else if(player.team === "black" && player.entity._color === CapColors.black) {
+				_.each(collisionData, function(curPlayer) {
+					if(playerByEntityId(curPlayer.obj[0]).team === "white" &&
+						curPlayer.obj._color !== CapColors.white) {
+							curPlayer.obj.tag();
 					}
 				});
 			}
@@ -187,22 +195,22 @@ Crafty.c('PlayerCharacter', {
 		}
 		else {
 
-			if(player.team === "black") {
+			if(player.team === "black" && player.entity._color === CapColors.black) {
 				_.each(collisionData, function(curPlayer) {
 					if(playerByEntityId(curPlayer.obj[0]).team === "white") {
-						captureBool = true;
+						curPlayer.obj.tag();
 					}
 				});
 			}
-
+			else if(player.team === "white" && player.entity._color === CapColors.white) {
+				_.each(collisionData, function(curPlayer) {
+					if(playerByEntityId(curPlayer.obj[0]).team === "black" &&
+						curPlayer.obj._color !== CapColors.black) {
+							curPlayer.obj.tag();
+					}
+				});
+			}
 		}
-
-		if(captureBool) {
-			_.each(collisionData, function(curPlayer) {
-				curPlayer.obj.tag();
-			});
-		}
-
 	},
 
 	flagPickUp: function(collisionData) {
