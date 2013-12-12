@@ -45,6 +45,9 @@ Game = {
 		// Initialize socket connection
 		socket = io.connect("http://localhost:8000", {port: 8000, transports: ["websocket"]});
 
+		// Nodejitsu
+		//socket = io.connect("http://capture-the-flag.jit.su:80", {port: 80, transports: ["websocket"]});
+
 		// Initialize remote players array
 		remotePlayers = {};
 

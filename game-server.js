@@ -88,7 +88,7 @@ function updateWaitingMessage() {
 		if(waitingOnPlayers > 0) {
 			clearCountdown();
 			waitingMsg = "Waiting for " + waitingOnPlayers + " player" + (waitingOnPlayers > 1 ? "s" : "") + " to select a team...";
-			io.sockets.emit("waiting msg", waitingMsg);
+			io.sockets.emit("waiting msg", {msg: waitingMsg});
 			return;
 		}
 
@@ -117,7 +117,7 @@ function updateWaitingMessage() {
 
 		util.log("Countdown initiated.");
 
-		var countdownCounter = 30;
+		var countdownCounter = 15;
 		clearCountdown();
 
 		countdown = setInterval(function() {
@@ -153,7 +153,7 @@ function updateWaitingMessage() {
 	else {
 		clearCountdown();
 		waitingMsg = "Waiting for more players...";
-		io.sockets.emit("waiting msg", waitingMsg);
+		io.sockets.emit("waiting msg", {msg: waitingMsg});
 	}
 
 }
@@ -243,6 +243,7 @@ function onNewPlayer(data) {
 function onTeamAssignment(data) {
 
 	var player = players[this.id];
+	if(!player) { return; }
 
 	// Add player to team
 	util.log(player.username + " added to " + data.team + " team.");
@@ -327,8 +328,10 @@ function startJailCountdown(data) {
 
 function incScore(data) {
 
+	var player = players[data.id];
+
 	// increment this player's flag captures
-	players[data.id].flagCaps++;
+	if(player) { player.flagCaps++;	}
 
 	// increment the appropriate team's score
 	var scoringTeam = data.team;
@@ -449,8 +452,12 @@ function init() {
 
 	reset();
 
-	// Set up Socket.IO to listen on port 80
+	// Set up Socket.IO to listen on port 8000
 	var port = (process.env.PORT || 8000);
+
+	// Nodejitsu
+	//var port = (process.env.PORT || 80);
+
 	io = io.listen(port);
 
 	// Configure Socket.IO

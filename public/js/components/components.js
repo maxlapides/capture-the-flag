@@ -46,7 +46,8 @@ Crafty.c('StageBg', {
 			.color(CapColors.gray20)
 			.attr({
 				w: (Game.map_grid.tile.width * Game.map_grid.width) / 2,
-				h: Game.map_grid.tile.height * Game.map_grid.height
+				h: Game.map_grid.tile.height * Game.map_grid.height,
+				z: 1
 			});
 	}
 });
@@ -63,7 +64,7 @@ Crafty.c('Edge', {
 		this.requires('Actor, Solid, Color, Grid')
 			.color('black')
 			.attr({
-				z: 3
+				z: 4
 			});
 	}
 
@@ -97,7 +98,7 @@ Crafty.c('SafeZone', {
 		this.requires('Actor, Color, Grid, Semisolid')
 			.color(CapColors.gray50)
 			.attr({
-				z: 1
+				z: 2
 			});
 	}
 
@@ -109,7 +110,7 @@ Crafty.c('HidingZone', {
 		this.requires('Actor, Color, Grid')
 			.color(CapColors.gray70)
 			.attr({
-				z: 3
+				z: 4
 			});
 	}
 
@@ -121,7 +122,7 @@ Crafty.c('Flag', {
 		this.requires('Actor, Color, Grid')
 			.color('rgb(100, 70, 100)')
 			.attr({
-				z: 1
+				z: 3
 			});
 	},
 

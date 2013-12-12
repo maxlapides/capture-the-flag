@@ -6,7 +6,7 @@ Crafty.c('Player', {
 		this.requires('Actor, Color, Grid')
 			.color('rgb(20,75,40)')
 			.attr({
-				z: 2
+				z: 3
 			});
 	},
 
@@ -47,11 +47,26 @@ Crafty.c('Player', {
 
 	tag: function(flagReturned) {
 
+		console.log("tagging(?)");
+
+		// you can't tag someone who's already in jail
+		if(this.jailed) { return; }
+
 		// get the tagged player
 		var thisPlayer = playerByEntityId(this[0]);
 
-		if(flagReturned) {
-			socket.emit("flag reset", {team: thisPlayer.team});
+		// check to see if they were carrying the flag
+		// if so, change their color back and return the flag
+		if(thisPlayer.team === "white" && thisPlayer.entity._color !== CapColors.white) {
+			thisPlayer.entity.color(CapColors.white);
+			// send to server a flag return
+			socket.emit("flag reset", {team: "black"});
+		}
+		else if(thisPlayer.team === "black" && thisPlayer.entity._color !== CapColors.black) {
+
+			thisPlayer.entity.color(CapColors.black);
+			// send to server a flag return
+			socket.emit("flag reset", {team: "white"});
 		}
 
 		// move player to jail
@@ -61,6 +76,15 @@ Crafty.c('Player', {
 
 		// post tag to server
 		socket.emit("tag", {id: thisPlayer.id, flagReturned: flagReturned});
+
+		// set the tagged player's color back to its original color
+		// (when player carrying flag is tagged, its color should be reset)
+		if(thisPlayer.team === "white" && thisPlayer.entity._color !== CapColors.white) {
+			thisPlayer.entity.color(CapColors.white);
+		}
+		else if(thisPlayer.team === "black" && thisPlayer.entity._color !== CapColors.black) {
+			thisPlayer.entity.color(CapColors.black);
+		}
 
 	}
 
