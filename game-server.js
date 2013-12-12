@@ -1,4 +1,4 @@
-/* global require */
+/* global require, process */
 
 /**************************************************
 	NODE.JS REQUIREMENTS
@@ -443,7 +443,8 @@ function init() {
 	reset();
 
 	// Set up Socket.IO to listen on port 8000
-	io = io.listen(8000);
+	var port = (process.env.PORT || 8000);
+	io = io.listen(port);
 
 	// Configure Socket.IO
 	io.configure(function() {
