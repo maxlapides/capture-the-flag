@@ -184,7 +184,7 @@ function onTag(data) {
 		tagger = remotePlayers[data.taggerId];
 	}
 
-	// post notification to chat feed
+	// post notifications to chat feed
 	addChatMsg(taggedPlayer.username + " tagged by " + tagger.username);
 
 	// move the tagged player to jail
@@ -207,12 +207,20 @@ function onTag(data) {
 
 }
 
+function flagReturned(data) {
+	addChatMsg(data.team + " flag returned by " + data.username);
+}
+
 function flagReset(data) {
 
 	// call function flagReset(resetTeam) on both flags, correct one will reset
 	_.each(flags, function(x) {
 		x.flagReset(data.team);
 	});
+
+	var resetPlayer = remotePlayers[data.id];
+	if(!resetPlayer) { resetPlayer = player; }
+
 }
 
 function flagPickUp(data) {
@@ -304,14 +312,14 @@ function incScore(data) {
 
 	// update player color
 	var thisPlayer = remotePlayers[data.id];
-	if(thisPlayer) {
-		thisPlayer.entity.color(CapColors[thisPlayer.team]);
-	}
+	if(!thisPlayer) { thisPlayer = player; }
+	thisPlayer.entity.color(CapColors[thisPlayer.team]);
 
 	// flash score notification
 	$('#score-notify').hide().removeClass("white black").addClass(data.team).html(data.team + "<br />scored").fadeIn();
 
-	addChatMsg(data.team + " scored");
+	// add notification to chat box
+	addChatMsg(thisPlayer.username + " (" + data.team + ") captured the flag");
 
 	setTimeout(function() {
 		$('#score-notify').fadeOut();
@@ -481,6 +489,9 @@ function setEventHandlers() {
 
 	// Player tagged
 	socket.on("tag", onTag);
+
+	// Flag returned
+	socket.on("flag returned", flagReturned);
 
 	// Flag reset
 	socket.on("flag reset", flagReset);

@@ -45,23 +45,13 @@ Crafty.c('Player', {
 
 	},
 
-	tag: function() {
+	tag: function(flagReturned) {
 
 		// get the tagged player
 		var thisPlayer = playerByEntityId(this[0]);
 
-		// check to see if they were carrying the flag
-		// if so, change their color back and return the flag
-		if(thisPlayer.team === "white" && thisPlayer.entity._color !== CapColors.white) {
-			thisPlayer.entity.color(CapColors.white);
-			// send to server a flag return
-			socket.emit("flag reset", {team: "black"});
-		}
-		else if(thisPlayer.team === "black" && thisPlayer.entity._color !== CapColors.black) {
-
-			thisPlayer.entity.color(CapColors.black);
-			// send to server a flag return
-			socket.emit("flag reset", {team: "white"});
+		if(flagReturned) {
+			socket.emit("flag reset", {team: thisPlayer.team});
 		}
 
 		// move player to jail
@@ -70,7 +60,7 @@ Crafty.c('Player', {
 		Crafty.audio.play("tag");
 
 		// post tag to server
-		socket.emit("tag", {id: thisPlayer.id});
+		socket.emit("tag", {id: thisPlayer.id, flagReturned: flagReturned});
 
 	}
 
@@ -176,43 +166,68 @@ Crafty.c('PlayerCharacter', {
 	detectTag: function(collisionData) {
 
 		var captureBool = false;
+		var flagReturned = false;
 
+		// white side
 		if(this.x < Game.map_grid.width * Game.map_grid.tile.width / 2) {
 
+			// white guy tags black guy
 			if(player.team === "white" && player.entity._color === CapColors.white) {
 				_.each(collisionData, function(curPlayer) {
+
 					if(playerByEntityId(curPlayer.obj[0]).team === "black") {
 						captureBool = true;
+
+						if(curPlayer.obj._color !== CapColors.black) {
+							flagReturned = true;
+						}
+
 					}
+
 				});
 			}
+
+			// white guy has black flag, black guy tags him
 			else if(player.team === "black" && player.entity._color === CapColors.black) {
 				_.each(collisionData, function(curPlayer) {
 					if(playerByEntityId(curPlayer.obj[0]).team === "white" &&
 						curPlayer.obj._color !== CapColors.white) {
 							captureBool = true;
+							flagReturned = true;
 					}
 				});
 			}
 
 		}
+
+		// black side
 		else {
 
+			// black guy tags a white guy
 			if(player.team === "black" && player.entity._color === CapColors.black) {
 				_.each(collisionData, function(curPlayer) {
 					if(playerByEntityId(curPlayer.obj[0]).team === "white") {
 						captureBool = true;
+
+						if(curPlayer.obj._color !== CapColors.white) {
+							flagReturned = true;
+						}
+
 					}
 				});
 			}
+
+			// black guy has white flag, white guy tags him
 			else if(player.team === "white" && player.entity._color === CapColors.white) {
 				_.each(collisionData, function(curPlayer) {
 					if(playerByEntityId(curPlayer.obj[0]).team === "black" &&
 						curPlayer.obj._color !== CapColors.black) {
 							captureBool = true;
+							flagReturned = true;
 					}
 				});
 			}
+
 		}
 
 		if(captureBool) {
@@ -220,7 +235,7 @@ Crafty.c('PlayerCharacter', {
 			_.each(collisionData, function(curPlayer) {
 
 				// tag the player
-				curPlayer.obj.tag();
+				curPlayer.obj.tag(flagReturned);
 
 				// post notification to chat feed
 				addChatMsg(playerByEntityId(curPlayer.obj[0]).username + " tagged by " + player.username);

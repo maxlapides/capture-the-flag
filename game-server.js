@@ -172,7 +172,7 @@ function flagReset(data) {
 	}
 
 	// notify all other clients that flag reset occurred
-	io.sockets.emit("flag reset", {team: data.team});
+	io.sockets.emit("flag reset", {team: data.team, id: this.id});
 
 	// set all players on the reset team to no longer be carrying the flag
 	_.each(_.values(players), function(thisPlayer) {
@@ -286,7 +286,11 @@ function onTag(data) {
 	taggedPlayer.timesTagged++;
 
 	// notify all other clients that the tag occurred
-	this.broadcast.emit("tag", {id: taggedPlayer.id, taggerId: tagger.id});
+	this.broadcast.emit("tag", {id: taggedPlayer.id, taggerId: tagger.id, flagReturned: data.flagReturned});
+
+	if(data.flagReturned) {
+		io.sockets.emit("flag returned", {team: tagger.team, username: tagger.username});
+	}
 
 	util.log(tagger.username + " tagged " + taggedPlayer.username);
 
