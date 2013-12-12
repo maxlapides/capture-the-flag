@@ -277,7 +277,7 @@ function incScore(data) {
 	// flash score notification
 	$('#score-notify').hide().removeClass("white black").addClass(data.team).html(data.team + "<br />scored").fadeIn();
 
-	addChatMsg("- " + data.team + " scored" + " -");
+	addChatMsg(data.team + " scored");
 
 	setTimeout(function() {
 		$('#score-notify').fadeOut();
