@@ -282,6 +282,9 @@ function onTag(data) {
 	var tagger = players[this.id];
 	var taggedPlayer = players[data.id];
 
+	// can't tag non-existent people
+	if(!tagger || !taggedPlayer) { return; }
+
 	// increment tag counts
 	tagger.tags++;
 	taggedPlayer.timesTagged++;

@@ -43,7 +43,7 @@ function playerByEntityId(id) {
 	var thisPlayer = false;
 
 	_.each(remotePlayers, function(curPlayer) {
-		if(curPlayer.entity[0] === id) {
+		if(curPlayer.entity && curPlayer.entity[0] === id) {
 			thisPlayer = curPlayer;
 		}
 	});

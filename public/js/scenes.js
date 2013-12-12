@@ -65,7 +65,6 @@ Crafty.scene('Game', function() {
 
 	// show the game and the stuff below it (teammates, chat)
 	$('.custom-scene').hide();
-	if(!mapDesignMode) { $('#below-game').show(); }
 
 	// add the "stage" to the canvas
 	Crafty.map.insert(Crafty.e('StageBg').at(0,0));
@@ -80,6 +79,15 @@ Crafty.scene('Game', function() {
 		}
 	}
 
+	// map design mode
+	if(mapDesignMode) {
+		Maps[Settings.mapDesignMap]();
+		return;
+	}
+
+	// show below game information
+	$('#below-game').show();
+
 	// add teammates to free list
 	_.each(_.values(remotePlayers), function(thisPlayer) {
 		if(thisPlayer.team === player.team) {
@@ -87,9 +95,6 @@ Crafty.scene('Game', function() {
 		}
 	});
 	player.free();
-
-	// set map for map design mode
-	if(mapDesignMode) { Maps[Settings.mapDesignMap](); }
 
 	// chat message submitted
 	$('form#chatForm').submit(function(e) {
