@@ -218,6 +218,9 @@ function jailRelease(data) {
 
 	// empty jail notifications
 	$('#corner-notify').empty();
+	
+	// sound boolean
+	var soundBool = false;
 
 	// search through all players and release any "jailed" players on your team
 	_.each(remotePlayers, function(curr) {
@@ -225,6 +228,7 @@ function jailRelease(data) {
 		if(curr.team === data.team && curr.entity.jailed === true) {
 			curr.entity.jailed = false;
 			curr.free();
+			soundBool = true;
 			if(curr.team === "white") {
 				curr.entity.x = (Math.random()*5 + 15) * Game.map_grid.tile.width;
 				curr.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
@@ -241,6 +245,7 @@ function jailRelease(data) {
 
 		player.entity.jailed = false;
 		player.free();
+		soundBool = true;
 		if(!data.auto) {
 			socket.emit("inc jail release", {id: data.id});
 		}
@@ -253,9 +258,11 @@ function jailRelease(data) {
 				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
 			}
 	}
-
-	Crafty.audio.play("jailDoor");
-	Crafty.audio.play("buzz");
+	
+	if(soundBool) {
+		Crafty.audio.play("jailDoor");
+		Crafty.audio.play("buzz");
+	}
 }
 
 function jailReleaseCountdown(data) {
