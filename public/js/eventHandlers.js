@@ -97,6 +97,7 @@ function onWaitingMessage(data) {
 
 	if(data.time < 6) {
 		// play sound
+		Crafty.audio.play("beep");
 	}
 
 }
