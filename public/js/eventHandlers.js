@@ -230,25 +230,36 @@ function jailRelease(data) {
 	// clear jail notifications
 	$('#corner-notify').empty();
 
+	// get the player who freed the people
+	var jailReleaser = remotePlayers[data.id];
+	if(!jailReleaser) { jailReleaser = player; }
+
 	// sound boolean
 	var soundBool = false;
 
-	// search through all players and release any "jailed" players on your team
+	// search through all players and release any "jailed" players on the released team
 	_.each(_.values(remotePlayers), function(curr) {
 
 		if(curr.team === data.team && curr.entity.jailed === true) {
+
 			curr.entity.jailed = false;
 			curr.free();
 			soundBool = true;
 			if(curr.team === "white") {
-				curr.entity.x = (Math.random()*5 + 15) * Game.map_grid.tile.width;
-				curr.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
+				curr.entity.x = 17 * Game.map_grid.tile.width;
+				curr.entity.y = 20 * Game.map_grid.tile.height;
 			}
 			else {
-				curr.entity.x = (Math.random()*5 + 139) * Game.map_grid.tile.width;
-				curr.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
+				curr.entity.x = 142 * Game.map_grid.tile.width;
+				curr.entity.y = 20 * Game.map_grid.tile.height;
 			}
+
+			if(!data.auto) {
+				addChatMsg(jailReleaser.username + " freed the " + data.team + " team");
+			}
+
 		}
+
 	});
 
 	// also check yo self before you wreck yo self
@@ -260,18 +271,20 @@ function jailRelease(data) {
 		if(!data.auto) {
 			socket.emit("inc jail release", {id: data.id});
 		}
-		if(player.team === "white") {
-				player.entity.x = (Math.random()*5 + 15) * Game.map_grid.tile.width;
-				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
-			}
-			else {
-				player.entity.x = (Math.random()*5 + 139) * Game.map_grid.tile.width;
-				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
-			}
-	}
 
-	// tell server about updated location
-	socket.emit("move", {x: this.x , y: this.y});
+		if(player.team === "white") {
+			player.entity.x = 17;
+			player.entity.y = 20;
+		}
+		else {
+			player.entity.x = 142;
+			player.entity.y = 20;
+		}
+
+		// tell server about updated location
+		socket.emit("move", {x: player.entity.x , y: player.entity.y});
+
+	}
 
 	if(soundBool) {
 		Crafty.audio.play("jailDoor");
