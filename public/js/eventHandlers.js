@@ -129,8 +129,15 @@ function onGameInProgress(data) {
 }
 
 function addChatMsg(msg, username) {
+
 	var chatBox = $('#chat-msgs');
-	chatBox.append("<br />" + username + ": " + msg);
+
+	if(username) {
+		chatBox.append("<br />" + username + ": " + msg);
+	} else {
+		chatBox.append("<br />- " + msg + " -");
+	}
+
 	chatBox.scrollTop(chatBox.get(0).scrollHeight);
 }
 
@@ -157,34 +164,34 @@ function onTag(data) {
 		taggedPlayer = remotePlayers[data.id];
 	}
 
+	// same deal to get the tagger
+	var tagger;
+	if(player.id === data.taggerId) {
+		tagger = player;
+	}
+	else {
+		tagger = remotePlayers[data.taggerId];
+	}
+
+	// post notification to chat feed
+	addChatMsg(taggedPlayer.username + " tagged by " + tagger.username);
+
 	// move the tagged player to jail
 	taggedPlayer.moveToJail();
 	taggedPlayer.entity.jailed = true;
 
+	// set the tagged player's color back to its original color
+	// (when player carrying flag is tagged, its color should be reset)
 	if(taggedPlayer.team === "white" && taggedPlayer.entity._color !== CapColors.white) {
-
 		taggedPlayer.entity.color(CapColors.white);
 	}
 	else if(taggedPlayer.team === "black" && taggedPlayer.entity._color !== CapColors.black) {
-
 		taggedPlayer.entity.color(CapColors.black);
 	}
 
+	// if there are no free teammates, tell the server to start the countdown
 	if($('#free-teammates li').length === 0) {
-
-		var jailFullCounter = 10;
-
-		var jailFull = setInterval(function() {
-
-			if(jailFullCounter === 0) {
-				clearInterval(jailFull);
-				socket.emit("jail release", {team: taggedPlayer.team, auto: true});
-				return;
-			}
-
-			jailFullCounter--;
-
-		}, 1000);
+		socket.emit("start jail countdown", {team: taggedPlayer.team, auto: true});
 	}
 
 }
@@ -209,6 +216,9 @@ function flagPickUp(data) {
 
 function jailRelease(data) {
 
+	// empty jail notifications
+	$('#corner-notify').empty();
+
 	// search through all players and release any "jailed" players on your team
 	_.each(remotePlayers, function(curr) {
 
@@ -228,7 +238,7 @@ function jailRelease(data) {
 
 	// also check yo self before you wreck yo self
 	if(player.team === data.team && player.entity.jailed === true) {
-	
+
 		player.entity.jailed = false;
 		player.free();
 		if(!data.auto) {
@@ -248,6 +258,10 @@ function jailRelease(data) {
 	Crafty.audio.play("buzz");
 }
 
+function jailReleaseCountdown(data) {
+	$('#corner-notify').html(data.team + " team released<br />in " + data.time + " second" + ((data.time !== 1) ? "s" : "") + "...");
+}
+
 function incScore(data) {
 
 	// change score
@@ -259,6 +273,15 @@ function incScore(data) {
 	if(thisPlayer) {
 		thisPlayer.entity.color(CapColors[thisPlayer.team]);
 	}
+
+	// flash score notification
+	$('#score-notify').hide().removeClass("white black").addClass(data.team).html(data.team + "<br />scored").fadeIn();
+
+	addChatMsg(data.team + " scored");
+
+	setTimeout(function() {
+		$('#score-notify').fadeOut();
+	}, 2000);
 
 	Crafty.audio.play("cheer");
 
@@ -427,6 +450,9 @@ function setEventHandlers() {
 
 	// Jail release
 	socket.on("jail release", jailRelease);
+
+	// Jail release countdown
+	socket.on("jail release countdown", jailReleaseCountdown);
 
 	// Increment score
 	socket.on("increment score", incScore);
