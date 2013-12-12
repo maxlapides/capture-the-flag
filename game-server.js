@@ -7,6 +7,7 @@
 var util = require("util"),					// Utility resources (logging, object inspection, etc)
 	io = require("socket.io"),				// Socket.IO
 	_ = require('underscore')._,			// Underscore.js
+	http = require('http'),
 	Player = require("./Player").Player;	// Player class
 
 /**************************************************
@@ -442,8 +443,8 @@ function init() {
 
 	reset();
 
-	// Set up Socket.IO to listen on port 8000
-	var port = (process.env.PORT || 8000);
+	// Set up Socket.IO to listen on port 80
+	var port = (process.env.PORT || 80);
 	io = io.listen(port);
 
 	// Configure Socket.IO
