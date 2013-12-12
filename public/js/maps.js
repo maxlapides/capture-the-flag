@@ -349,42 +349,127 @@ var Maps = {
 		
 		// creating Obstacles
 
-		// 
-		Crafty.e('Obstacle').at(34, 11).setSize(2, 18);
+		// white Jail blocker
+		Crafty.e('Obstacle').at(14, 1).setSize(2, 13);
+		// white flag encolosers
+		Crafty.e('Obstacle').at(4, 30).setSize(2, 7);
+		Crafty.e('Obstacle').at(4, 30).setSize(9, 2);
+		Crafty.e('Obstacle').at(11, 30).setSize(2, 7);
+		// white flag blocker
+		Crafty.e('Obstacle').at(1, 25).setSize(30, 2);
+		// black Jail blocker
+		Crafty.e('Obstacle').at(145, 26).setSize(2, 13);
+		// black flag encolosers
+		Crafty.e('Obstacle').at(154, 3).setSize(2, 7);
+		Crafty.e('Obstacle').at(147, 8).setSize(9, 2);
+		Crafty.e('Obstacle').at(147, 3).setSize(2, 7);
+		// black flag blocker
+		Crafty.e('Obstacle').at(129, 13).setSize(30, 2);
+		// white jail 5some
+		Crafty.e('Obstacle').at(18, 36).setSize(2, 2);
+		Crafty.e('Obstacle').at(26, 36).setSize(2, 2);
+		Crafty.e('Obstacle').at(22, 32).setSize(2, 2);
+		Crafty.e('Obstacle').at(18, 28).setSize(2, 2);
+		Crafty.e('Obstacle').at(26, 28).setSize(2, 2);
+		// black jail 5some
+		Crafty.e('Obstacle').at(140, 2).setSize(2, 2);
+		Crafty.e('Obstacle').at(132, 2).setSize(2, 2);
+		Crafty.e('Obstacle').at(136, 6).setSize(2, 2);
+		Crafty.e('Obstacle').at(140, 10).setSize(2, 2);
+		Crafty.e('Obstacle').at(132, 10).setSize(2, 2);
+		// inner circle dealio
+		Crafty.e('Obstacle').at(74, 14).setSize(2, 6);
+		Crafty.e('Obstacle').at(78, 14).setSize(12, 2);
+		Crafty.e('Obstacle').at(84, 20).setSize(2, 6);
+		Crafty.e('Obstacle').at(70, 24).setSize(12, 2);
+		// outer circle dealio top
+		Crafty.e('Obstacle').at(68, 19).setSize(2, 7);
+		Crafty.e('Obstacle').at(68, 10).setSize(2, 7);
+		Crafty.e('Obstacle').at(68, 10).setSize(30, 2);
+		// outer circle dealio bottom
+		Crafty.e('Obstacle').at(90, 14).setSize(2, 7);
+		Crafty.e('Obstacle').at(90, 23).setSize(2, 7);
+		Crafty.e('Obstacle').at(62, 28).setSize(30, 2);
+		// top of the level shtuff
+		Crafty.e('Obstacle').at(95, 6).setSize(8, 2);
+		Crafty.e('Obstacle').at(78, 1).setSize(4, 6);
+		Crafty.e('Obstacle').at(72, 2).setSize(2, 2);
+		Crafty.e('Obstacle').at(75, 5).setSize(2, 2);
+		// bottom of the level shtuff
+		Crafty.e('Obstacle').at(57, 32).setSize(8, 2);
+		Crafty.e('Obstacle').at(78, 33).setSize(4, 6);
+		Crafty.e('Obstacle').at(83, 33).setSize(2, 2);
+		Crafty.e('Obstacle').at(86, 36).setSize(2, 2);
+		// white/black cross centers
+		Crafty.e('Obstacle').at(47, 15).setSize(3, 3);
+		Crafty.e('Obstacle').at(110, 23).setSize(3, 3);
 		
 		// creating Hiding Zones
 
-		// 
-		Crafty.e('HidingZone').at(40, 19).setSize(2, 2);
+		// white jail spot
+		Crafty.e('HidingZone').at(11, 37).setSize(2, 2);
+		// white jail 4some
+		Crafty.e('HidingZone').at(18, 32).setSize(2, 2);
+		Crafty.e('HidingZone').at(26, 32).setSize(2, 2);
+		Crafty.e('HidingZone').at(22, 36).setSize(2, 2);
+		Crafty.e('HidingZone').at(22, 28).setSize(2, 2);
+		// black jail spot
+		Crafty.e('HidingZone').at(147, 1).setSize(2, 2);
+		// black jail 4some
+		Crafty.e('HidingZone').at(140, 6).setSize(2, 2);
+		Crafty.e('HidingZone').at(132, 6).setSize(2, 2);
+		Crafty.e('HidingZone').at(136, 2).setSize(2, 2);
+		Crafty.e('HidingZone').at(136, 10).setSize(2, 2);
+		// inner shitstorm
+		Crafty.e('HidingZone').at(76, 14).setSize(2, 2);
+		Crafty.e('HidingZone').at(82, 24).setSize(2, 2);
+		Crafty.e('HidingZone').at(68, 17).setSize(2, 2);
+		Crafty.e('HidingZone').at(90, 21).setSize(2, 2);
+		Crafty.e('HidingZone').at(98, 10).setSize(2, 2);
+		Crafty.e('HidingZone').at(60, 28).setSize(2, 2);
+		// top/bottom spots
+		Crafty.e('HidingZone').at(72, 5).setSize(2, 2);
+		Crafty.e('HidingZone').at(75, 2).setSize(2, 2);
+		Crafty.e('HidingZone').at(83, 36).setSize(2, 2);
+		Crafty.e('HidingZone').at(86, 33).setSize(2, 2);
+		// white side cross
+		Crafty.e('HidingZone').at(47, 10).setSize(3, 3);
+		Crafty.e('HidingZone').at(47, 20).setSize(3, 3);
+		Crafty.e('HidingZone').at(42, 15).setSize(3, 3);
+		Crafty.e('HidingZone').at(52, 15).setSize(3, 3);
+		// black side cross
+		Crafty.e('HidingZone').at(110, 18).setSize(3, 3);
+		Crafty.e('HidingZone').at(110, 28).setSize(3, 3);
+		Crafty.e('HidingZone').at(105, 23).setSize(3, 3);
+		Crafty.e('HidingZone').at(115, 23).setSize(3, 3);
 
 		// creating Safe Zones
 
 		// White Flag
-		Crafty.e('SafeZone').at(28, 17).setSize(6, 6);
+		Crafty.e('SafeZone').at(6, 32).setSize(5, 5);
 		// Black Flag
-		Crafty.e('SafeZone').at(126, 17).setSize(6, 6);
+		Crafty.e('SafeZone').at(149, 3).setSize(5, 5);
 
 		// creating Flags
 
 		// White
-		Crafty.e('Flag').at(32, 19).setSize(2, 2).setColor("white");
+		Crafty.e('Flag').at(8, 32).setSize(1, 1).setColor("white");
 		// Black
-		Crafty.e('Flag').at(126, 19).setSize(2, 2).setColor("black");
+		Crafty.e('Flag').at(151, 7).setSize(1, 1).setColor("black");
 
 		// creating Jails
 
 		// White
-		Crafty.e('JailWall').at(1, 15).setSize(10, 1).setTeam("white");
-		Crafty.e('JailWall').at(10, 15).setSize(1, 10).setTeam("white");
-		Crafty.e('JailWall').at(1, 25).setSize(10, 1).setTeam("white");
+		Crafty.e('JailWall').at(11, 1).setSize(1, 10).setTeam("white");
+		Crafty.e('JailWall').at(1, 11).setSize(11, 1).setTeam("white");
+
 		// Black
-		Crafty.e('JailWall').at(149, 15).setSize(10, 1).setTeam("black");
-		Crafty.e('JailWall').at(149, 15).setSize(1, 10).setTeam("black");
-		Crafty.e('JailWall').at(149, 25).setSize(10, 1).setTeam("black");
+		Crafty.e('JailWall').at(149, 29).setSize(10, 1).setTeam("black");
+		Crafty.e('JailWall').at(149, 29).setSize(1, 10).setTeam("black");
 
 		// set jail positions
-		whiteJailPos = {x: 5, y: 20};
-		blackJailPos = {x: 154, y: 20};
+		whiteJailPos = {x: 5, y: 5};
+		blackJailPos = {x: 154, y: 34};
 		
 	}
 

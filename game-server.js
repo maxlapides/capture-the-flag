@@ -19,7 +19,7 @@ var inactivePlayers,			// Array of connected players
 	countdown,					// Interval ID of countdown timer
 	gameInProgress = false,
 	score = {},
-	numMaps = 4;				// Number of available maps
+	numMaps = 5;				// Number of available maps
 
 /**************************************************
 	HELPER FUNCTIONS
