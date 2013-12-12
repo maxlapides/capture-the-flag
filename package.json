@@ -1,6 +1,6 @@
 {
 	"name": "game3",
-	"version": "0.1.0",
+	"version": "0.1.0-1",
 	"author": "Max Lapides, Brian Heil",
 	"subdomain": "capture-the-flag",
 	"description": "A New Game",
@@ -8,10 +8,10 @@
 		"start": "node game-server.js"
 	},
 	"dependencies": {
-		"socket.io"		: "0.9.16",
-		"underscore"	: "1.5.2"
+		"socket.io": "0.9.16",
+		"underscore": "1.5.2"
 	},
 	"engines": {
-		"node": "0.10.22"
+		"node": "0.10.x"
 	}
 }
