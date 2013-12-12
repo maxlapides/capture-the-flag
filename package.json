@@ -4,8 +4,14 @@
 	"author": "Max Lapides, Brian Heil",
 	"subdomain": "capture-the-flag",
 	"description": "A New Game",
+	"scripts": {
+		"start": "node game-server.js"
+	},
 	"dependencies": {
 		"socket.io"		: "0.9.16",
 		"underscore"	: "1.5.2"
+	},
+	"engines": {
+		"node": "0.10.22"
 	}
 }
