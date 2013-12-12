@@ -111,8 +111,8 @@ Crafty.c('PlayerCharacter', {
 
 		this._speed = 0;
 		if (this._movement) {
-			this.x -= this._movement.x;
-			this.y -= this._movement.y;
+			this.x -= this._movement.x * 1.5;
+			this.y -= this._movement.y * 1.5;
 		}
 
 		// post updated position to server

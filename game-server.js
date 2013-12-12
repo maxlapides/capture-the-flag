@@ -57,11 +57,11 @@ function startGame() {
 
 		if(thisPlayer.team === "white") {
 			thisPlayer.x = 17;
-			thisPlayer.y = Math.floor(Math.random()*30 + 5);
+			thisPlayer.y = 20;
 		}
 		else {
 			thisPlayer.x = 142;
-			thisPlayer.y = Math.floor(Math.random()*30 + 5);
+			thisPlayer.y = 20;
 		}
 
 		io.sockets.emit("init player", {id:thisPlayer.id, x: thisPlayer.x, y: thisPlayer.y});
@@ -117,7 +117,7 @@ function updateWaitingMessage() {
 
 		util.log("Countdown initiated.");
 
-		var countdownCounter = 3;
+		var countdownCounter = 30;
 		clearCountdown();
 
 		countdown = setInterval(function() {
@@ -141,7 +141,7 @@ function updateWaitingMessage() {
 
 			// update waiting message every second
 			waitingMsg = "Game starting in " + countdownCounter + " second" + (countdownCounter > 1 ? "s" : "") + "...";
-			io.sockets.emit("waiting msg", waitingMsg);
+			io.sockets.emit("waiting msg", {msg: waitingMsg, time: countdownCounter});
 
 			// count down
 			countdownCounter--;
@@ -263,7 +263,9 @@ function onTeamAssignment(data) {
 
 function onChatMsg(data) {
 	var player = players[this.id];
-	this.broadcast.to(player.team).emit("chat msg", {msg: data, username: player.username});
+	if(player && data) {
+		this.broadcast.to(player.team).emit("chat msg", {msg: data, username: player.username});
+	}
 }
 
 function onMove(data) {
@@ -338,7 +340,7 @@ function incScore(data) {
 		gameInProgress = false;
 
 		// reset all player variables
-		_.each(players, function(player) {
+		_.each(_.values(players), function(player) {
 			player.team = "";
 			player.carryingFlag = false;
 			player.tags = 0;
@@ -444,7 +446,7 @@ function init() {
 	reset();
 
 	// Set up Socket.IO to listen on port 80
-	var port = (process.env.PORT || 80);
+	var port = (process.env.PORT || 8000);
 	io = io.listen(port);
 
 	// Configure Socket.IO

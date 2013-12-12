@@ -81,7 +81,7 @@ Crafty.scene('Game', function() {
 	}
 
 	// add teammates to free list
-	_.each(remotePlayers, function(thisPlayer) {
+	_.each(_.values(remotePlayers), function(thisPlayer) {
 		if(thisPlayer.team === player.team) {
 			thisPlayer.free();
 		}

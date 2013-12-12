@@ -92,7 +92,13 @@ function onTeamAssignment(data) {
 }
 
 function onWaitingMessage(data) {
-	$('#waiting-room #waiting-msg').text(data);
+
+	$('#waiting-room #waiting-msg').text(data.msg);
+
+	if(data.time < 6) {
+		// play sound
+	}
+
 }
 
 function onStartGame(data) {
@@ -132,6 +138,8 @@ function addChatMsg(msg, username) {
 
 	var chatBox = $('#chat-msgs');
 
+	if(!msg) { return; }
+
 	if(username) {
 		chatBox.append("<br />" + username + ": " + msg);
 	} else {
@@ -147,8 +155,10 @@ function onChatMsg(data) {
 
 function onMove(data) {
 	var player = remotePlayers[data.id];
-	player.entity.x = data.x;
-	player.entity.y = data.y;
+	if(player && player.entity) {
+		player.entity.x = data.x;
+		player.entity.y = data.y;
+	}
 }
 
 function onTag(data) {
@@ -216,14 +226,14 @@ function flagPickUp(data) {
 
 function jailRelease(data) {
 
-	// empty jail notifications
+	// clear jail notifications
 	$('#corner-notify').empty();
-	
+
 	// sound boolean
 	var soundBool = false;
 
 	// search through all players and release any "jailed" players on your team
-	_.each(remotePlayers, function(curr) {
+	_.each(_.values(remotePlayers), function(curr) {
 
 		if(curr.team === data.team && curr.entity.jailed === true) {
 			curr.entity.jailed = false;
@@ -258,7 +268,10 @@ function jailRelease(data) {
 				player.entity.y = (Math.random()*15 + 15) * Game.map_grid.tile.height;
 			}
 	}
-	
+
+	// tell server about updated location
+	socket.emit("move", {x: this.x , y: this.y});
+
 	if(soundBool) {
 		Crafty.audio.play("jailDoor");
 		Crafty.audio.play("buzz");
@@ -402,6 +415,12 @@ function gameOver(data) {
 	});
 
 	$('#waiting-room .team li').remove();
+
+	// clear the chat
+	$('#chat-msgs').empty();
+
+	// clear the score
+	$('#score span').text("0");
 
 }
 
