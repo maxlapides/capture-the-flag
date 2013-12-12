@@ -273,12 +273,12 @@ function jailRelease(data) {
 		}
 
 		if(player.team === "white") {
-			player.entity.x = 17;
-			player.entity.y = 20;
+			player.entity.x = 17 * Game.map_grid.tile.width;
+			player.entity.y = 20 * Game.map_grid.tile.height;
 		}
 		else {
-			player.entity.x = 142;
-			player.entity.y = 20;
+			player.entity.x = 142 * Game.map_grid.tile.width;
+			player.entity.y = 20 * Game.map_grid.tile.height;
 		}
 
 		// tell server about updated location
