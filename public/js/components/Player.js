@@ -1,4 +1,4 @@
-/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors, blackJailPos, whiteJailPos, playerByEntityId, flags */
+/* global _, Settings, Game:true, Crafty, io, socket:true, Player, player, remotePlayers:true, CapColors, blackJailPos, whiteJailPos, playerByEntityId, flags, addChatMsg */
 
 Crafty.c('Player', {
 
@@ -66,7 +66,7 @@ Crafty.c('Player', {
 
 		// move player to jail
 		thisPlayer.moveToJail();
-		
+
 		Crafty.audio.play("tag");
 
 		// post tag to server
@@ -182,7 +182,7 @@ Crafty.c('PlayerCharacter', {
 			if(player.team === "white" && player.entity._color === CapColors.white) {
 				_.each(collisionData, function(curPlayer) {
 					if(playerByEntityId(curPlayer.obj[0]).team === "black") {
-						curPlayer.obj.tag();
+						captureBool = true;
 					}
 				});
 			}
@@ -190,7 +190,7 @@ Crafty.c('PlayerCharacter', {
 				_.each(collisionData, function(curPlayer) {
 					if(playerByEntityId(curPlayer.obj[0]).team === "white" &&
 						curPlayer.obj._color !== CapColors.white) {
-							curPlayer.obj.tag();
+							captureBool = true;
 					}
 				});
 			}
@@ -201,7 +201,7 @@ Crafty.c('PlayerCharacter', {
 			if(player.team === "black" && player.entity._color === CapColors.black) {
 				_.each(collisionData, function(curPlayer) {
 					if(playerByEntityId(curPlayer.obj[0]).team === "white") {
-						curPlayer.obj.tag();
+						captureBool = true;
 					}
 				});
 			}
@@ -209,11 +209,26 @@ Crafty.c('PlayerCharacter', {
 				_.each(collisionData, function(curPlayer) {
 					if(playerByEntityId(curPlayer.obj[0]).team === "black" &&
 						curPlayer.obj._color !== CapColors.black) {
-							curPlayer.obj.tag();
+							captureBool = true;
 					}
 				});
 			}
 		}
+
+		if(captureBool) {
+
+			_.each(collisionData, function(curPlayer) {
+
+				// tag the player
+				curPlayer.obj.tag();
+
+				// post notification to chat feed
+				addChatMsg(playerByEntityId(curPlayer.obj[0]).username + " tagged by " + player.username);
+
+			});
+
+		}
+
 	},
 
 	flagPickUp: function(collisionData) {
@@ -225,7 +240,7 @@ Crafty.c('PlayerCharacter', {
 				player.entity.color(curr.obj._color);
 				curr.obj.color(CapColors.gray50);
 				curr.obj.captured = true;
-				
+
 				Crafty.audio.play("flagGet");
 
 				// post flag pick up to server

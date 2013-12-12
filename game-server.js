@@ -16,9 +16,10 @@ var util = require("util"),					// Utility resources (logging, object inspection
 var inactivePlayers,			// Array of connected players
 	players,					// Array of active players
 	playersCount,				// Number of connected players
-	countdown,					// Interval ID of countdown timer
+	countdown = false,			// Interval ID of countdown timer
 	gameInProgress = false,
 	score = {},
+	capsToWin = 3,
 	numMaps = 4;				// Number of available maps
 
 /**************************************************
@@ -115,6 +116,7 @@ function updateWaitingMessage() {
 		util.log("Countdown initiated.");
 
 		var countdownCounter = 3;
+		clearCountdown();
 
 		countdown = setInterval(function() {
 
@@ -280,7 +282,7 @@ function onTag(data) {
 	taggedPlayer.timesTagged++;
 
 	// notify all other clients that the tag occurred
-	this.broadcast.emit("tag", {id: taggedPlayer.id});
+	this.broadcast.emit("tag", {id: taggedPlayer.id, taggerId: tagger.id});
 
 	util.log(tagger.username + " tagged " + taggedPlayer.username);
 
@@ -295,6 +297,26 @@ function jailRelease(data) {
 	io.sockets.emit("jail release", {team: data.team, id: this.id, auto: data.auto});
 }
 
+function startJailCountdown(data) {
+
+	var jailFullCounter = 10;
+
+	var jailFull = setInterval(function() {
+
+		io.sockets.emit("jail release countdown", {team: data.team, time: jailFullCounter});
+
+		if(jailFullCounter === 0) {
+			clearInterval(jailFull);
+			io.sockets.emit("jail release", {team: data.team, id: this.id, auto: data.auto});
+			return;
+		}
+
+		jailFullCounter--;
+
+	}, 1000);
+
+}
+
 function incScore(data) {
 
 	// increment this player's flag captures
@@ -305,7 +327,7 @@ function incScore(data) {
 	score[scoringTeam]++;
 
 	// if the game is over
-	if(score[scoringTeam] > 0) {
+	if(score[scoringTeam] > (capsToWin-1)) {
 
 		// tell players the game has ended
 		io.sockets.emit("game over", {score: score, players: players});
@@ -324,12 +346,15 @@ function incScore(data) {
 			player.jailReleases = 0;
 		});
 
+		// reset the score
+		score = {};
+
 		// update the waiting message
 		updateWaitingMessage();
 
 	}
 	else {
-		io.sockets.emit("increment score", {score: score, id: data.id});
+		io.sockets.emit("increment score", {score: score, id: data.id, team: scoringTeam});
 	}
 
 }
@@ -385,6 +410,9 @@ function onSocketConnection(client) {
 
 	// Listen for jail release
 	client.on("jail release", jailRelease);
+
+	// Listen for jail release countdown
+	client.on("start jail countdown", startJailCountdown);
 
 	// Listen for increment score
 	client.on("increment score", incScore);
