@@ -9,3 +9,4 @@
 		Crafty.audio.add("tag", "sounds/Water_Drop_Low.mp3");
 		Crafty.audio.add("win", "sounds/Tada.mp3");
 		Crafty.audio.add("lose", "sounds/Thunder.mp3");
+		Crafty.audio.add("beep", "sounds/beep.mp3");
