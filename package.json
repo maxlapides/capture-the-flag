@@ -2,6 +2,7 @@
 	"name": "game3",
 	"version": "0.1.0",
 	"author": "Max Lapides, Brian Heil",
+	"subdomain": "capture-the-flag",
 	"description": "A New Game",
 	"dependencies": {
 		"socket.io"		: "0.9.16",
