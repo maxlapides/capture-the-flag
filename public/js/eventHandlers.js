@@ -2,6 +2,7 @@
 
 var socket;
 var flags = [];
+var notificationIds = [];
 
 // Socket connected
 function onSocketConnected() {
@@ -163,6 +164,12 @@ function onMove(data) {
 }
 
 function onTag(data) {
+
+	// if this notification already happened, don't post it again
+	if(_.contains(notificationIds, data.notificationId)) { return; }
+
+	// add this notification to the notification IDs array
+	notificationIds.push(data.notificationId);
 
 	var taggedPlayer;
 

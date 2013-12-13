@@ -20,6 +20,7 @@ var inactivePlayers,			// Array of connected players
 	countdown = false,			// Interval ID of countdown timer
 	gameInProgress = false,
 	score = {},
+	curNotificationId = 0,		// Keep track of notification ids
 	numMaps = 5,				// Number of available maps
 	capsToWin = 3;
 
@@ -158,6 +159,37 @@ function updateWaitingMessage() {
 
 }
 
+function endGame(notifyPlayers) {
+
+	util.log("Ending game...");
+
+	// tell players the game has ended
+	if(notifyPlayers) {
+		io.sockets.emit("game over", {score: score, players: players});
+	}
+
+	// set game over
+	gameInProgress = false;
+
+	// reset all player variables
+	_.each(_.values(players), function(player) {
+		player.team = "";
+		player.carryingFlag = false;
+		player.tags = 0;
+		player.timesTagged = 0;
+		player.flagCaps = 0;
+		player.flagReturns = 0;
+		player.jailReleases = 0;
+	});
+
+	// reset the score
+	score = {};
+
+	// update the waiting message
+	updateWaitingMessage();
+
+}
+
 
 /**************************************************
 	GAME EVENT HANDLERS
@@ -185,6 +217,7 @@ function flagReset(data) {
 
 // Socket client has disconnected
 function onClientDisconnect() {
+
 	util.log("Player has disconnected: "+this.id);
 
 	var removePlayer = players[this.id];
@@ -195,14 +228,20 @@ function onClientDisconnect() {
 		return;
 	}
 
+	// Remove player from players array
+	delete players[this.id];
+	playersCount--;
+
+	// If there are no more connected players and a game is in progress, kill the game
+	if(gameInProgress && _.keys(players).length === 0) {
+		endGame();
+		return;
+	}
+
 	// Reset the flag if the player was carrying the flag
 	if(removePlayer.carryingFlag) {
 		flagReset({team: removePlayer.team});
 	}
-
-	// Remove player from players array
-	delete players[this.id];
-	playersCount--;
 
 	// Broadcast removed player to connected socket clients
 	this.broadcast.emit("remove player", {id: this.id});
@@ -290,7 +329,7 @@ function onTag(data) {
 	taggedPlayer.timesTagged++;
 
 	// notify all other clients that the tag occurred
-	this.broadcast.emit("tag", {id: taggedPlayer.id, taggerId: tagger.id, flagReturned: data.flagReturned});
+	this.broadcast.emit("tag", {id: taggedPlayer.id, taggerId: tagger.id, flagReturned: data.flagReturned, notificationId: curNotificationId++});
 
 	if(data.flagReturned) {
 		io.sockets.emit("flag returned", {team: tagger.team, username: tagger.username});
@@ -342,30 +381,7 @@ function incScore(data) {
 
 	// if the game is over
 	if(score[scoringTeam] > (capsToWin-1)) {
-
-		// tell players the game has ended
-		io.sockets.emit("game over", {score: score, players: players});
-
-		// set game over
-		gameInProgress = false;
-
-		// reset all player variables
-		_.each(_.values(players), function(player) {
-			player.team = "";
-			player.carryingFlag = false;
-			player.tags = 0;
-			player.timesTagged = 0;
-			player.flagCaps = 0;
-			player.flagReturns = 0;
-			player.jailReleases = 0;
-		});
-
-		// reset the score
-		score = {};
-
-		// update the waiting message
-		updateWaitingMessage();
-
+		endGame(true);
 	}
 	else {
 		io.sockets.emit("increment score", {score: score, id: data.id, team: scoringTeam});

@@ -47,8 +47,6 @@ Crafty.c('Player', {
 
 	tag: function(flagReturned) {
 
-		console.log("tagging(?)");
-
 		// you can't tag someone who's already in jail
 		if(this.jailed) { return; }
 
@@ -187,7 +185,16 @@ Crafty.c('PlayerCharacter', {
 		return this;
 	},
 
+	justTaggedSomeone: false,
+
 	detectTag: function(collisionData) {
+
+		// prevent duplicate tagging notifications (?)
+		if(player.justTaggedSomeone) { return; }
+		player.justTaggedSomeone = true;
+		setTimeout(function() {
+			player.justTaggedSomeone = false;
+		}, 200);
 
 		var captureBool = false;
 		var flagReturned = false;
